@@ -1,0 +1,765 @@
+2013/11/27 17:13:18 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ipmarket.banner' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `banner`.
+in /home/hrayr/www/ip.loc/index.php (13)
+2013/12/10 00:45:39 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`ipmarket`.`banner`, CONSTRAINT `Sites_id` FOREIGN KEY (`site_id`) REFERENCES `sites` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION). The SQL statement executed was: INSERT INTO `banner` (`site_id`, `name`, `size`, `photo`, `price_amd`, `price_us`, `price_rur`, `duration`, `placement`, `placement_type`, `type`, `price_type`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11).
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (73)
+in /home/hrayr/www/ip.loc/index.php (13)
+2013/12/10 00:45:39 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`ipmarket`.`banner`, CONSTRAINT `Sites_id` FOREIGN KEY (`site_id`) REFERENCES `sites` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION). The SQL statement executed was: INSERT INTO `banner` (`site_id`, `name`, `size`, `photo`, `price_amd`, `price_us`, `price_rur`, `duration`, `placement`, `placement_type`, `type`, `price_type`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11)' in /home/hrayr/www/ip.loc/framework/db/CDbCommand.php:358
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/db/ar/CActiveRecord.php(1077): CDbCommand->execute()
+#1 /home/hrayr/www/ip.loc/framework/db/ar/CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#2 /home/hrayr/www/ip.loc/protected/controllers/BannerController.php(73): CActiveRecord->save()
+#3 /home/hrayr/www/ip.loc/framework/web/actions/CInlineAction.php(49): BannerController->actionCreate()
+#4 /home/hrayr/www/ip.loc/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 /home/hrayr/www/ip.loc/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /home/hrayr/www/ip.loc/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 /home/hrayr/www/ip.loc/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 /home/hrayr/www/ip.loc/framework/web/CController.php(291): CFilterChain->run()
+#11 /home/hrayr/www/ip.loc/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): CController->run('create')
+#13 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController('banner/create')
+#14 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /home/hrayr/www/ip.loc/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/index.php?r=banner/create
+HTTP_REFERER=http://ip.loc/index.php?r=banner/create
+---
+2013/12/10 00:51:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "sites".' in /home/hrayr/www/ip.loc/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController('sites')
+#1 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /home/hrayr/www/ip.loc/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/index.php?r=sites
+---
+2013/12/10 00:51:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "sites/index".' in /home/hrayr/www/ip.loc/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController('sites/index')
+#1 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /home/hrayr/www/ip.loc/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/index.php?r=sites/index
+---
+2013/12/10 20:49:31 [error] [php] include(ItemType.php): failed to open stream: No such file or directory (/home/hrayr/www/ip.loc/framework/YiiBase.php:427)
+Stack trace:
+#0 /home/hrayr/www/ip.loc/protected/views/banner/_form.php(24): spl_autoload_call()
+#1 /home/hrayr/www/ip.loc/framework/web/CBaseController.php(126): require()
+#2 /home/hrayr/www/ip.loc/framework/web/CBaseController.php(95): BannerController->renderInternal()
+#3 /home/hrayr/www/ip.loc/framework/web/CController.php(869): BannerController->renderFile()
+#4 /home/hrayr/www/ip.loc/protected/views/banner/create.php(18): BannerController->renderPartial()
+#5 /home/hrayr/www/ip.loc/framework/web/CBaseController.php(126): require()
+#6 /home/hrayr/www/ip.loc/framework/web/CBaseController.php(95): BannerController->renderInternal()
+#7 /home/hrayr/www/ip.loc/framework/web/CController.php(869): BannerController->renderFile()
+#8 /home/hrayr/www/ip.loc/framework/web/CController.php(782): BannerController->renderPartial()
+#9 /home/hrayr/www/ip.loc/protected/controllers/BannerController.php(79): BannerController->render()
+#10 /home/hrayr/www/ip.loc/framework/web/actions/CInlineAction.php(49): BannerController->actionCreate()
+#11 /home/hrayr/www/ip.loc/framework/web/CController.php(308): CInlineAction->runWithParams()
+#12 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(133): BannerController->runAction()
+#13 /home/hrayr/www/ip.loc/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#14 /home/hrayr/www/ip.loc/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#15 /home/hrayr/www/ip.loc/framework/web/filters/CInlineFilter.php(58): BannerController->filterAccessControl()
+#16 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#17 /home/hrayr/www/ip.loc/framework/web/CController.php(291): CFilterChain->run()
+#18 /home/hrayr/www/ip.loc/framework/web/CController.php(265): BannerController->runActionWithFilters()
+#19 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): BannerController->run()
+#20 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#21 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#22 /home/hrayr/www/ip.loc/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php?r=banner/create
+in /home/hrayr/www/ip.loc/protected/views/banner/_form.php (24)
+in /home/hrayr/www/ip.loc/protected/views/banner/create.php (18)
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (79)
+2013/12/10 20:59:34 [warning] [application] Failed to set unsafe attribute "name" of "Banner".
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (72)
+in /home/hrayr/www/ip.loc/index.php (13)
+2013/12/10 20:59:34 [warning] [application] Failed to set unsafe attribute "photo" of "Banner".
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (72)
+in /home/hrayr/www/ip.loc/index.php (13)
+2013/12/10 21:01:25 [warning] [application] Failed to set unsafe attribute "photo" of "Banner".
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (72)
+in /home/hrayr/www/ip.loc/index.php (13)
+2013/12/10 21:13:10 [warning] [application] Failed to set unsafe attribute "photo" of "Banner".
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (72)
+in /home/hrayr/www/ip.loc/index.php (13)
+2013/12/10 21:13:11 [error] [php] move_uploaded_file(): The second argument to copy() function cannot be a directory (/home/hrayr/www/ip.loc/framework/web/CUploadedFile.php:198)
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/actions/CInlineAction.php(49): BannerController->actionCreate()
+#1 /home/hrayr/www/ip.loc/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(133): BannerController->runAction()
+#3 /home/hrayr/www/ip.loc/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /home/hrayr/www/ip.loc/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#5 /home/hrayr/www/ip.loc/framework/web/filters/CInlineFilter.php(58): BannerController->filterAccessControl()
+#6 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#7 /home/hrayr/www/ip.loc/framework/web/CController.php(291): CFilterChain->run()
+#8 /home/hrayr/www/ip.loc/framework/web/CController.php(265): BannerController->runActionWithFilters()
+#9 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): BannerController->run()
+#10 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /home/hrayr/www/ip.loc/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php?r=banner/create
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (75)
+in /home/hrayr/www/ip.loc/index.php (13)
+2013/12/10 21:15:14 [warning] [application] Failed to set unsafe attribute "photo" of "Banner".
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (72)
+in /home/hrayr/www/ip.loc/index.php (13)
+2013/12/10 21:15:14 [error] [php] move_uploaded_file(/image/): failed to open stream: Is a directory (/home/hrayr/www/ip.loc/framework/web/CUploadedFile.php:198)
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/actions/CInlineAction.php(49): BannerController->actionCreate()
+#1 /home/hrayr/www/ip.loc/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(133): BannerController->runAction()
+#3 /home/hrayr/www/ip.loc/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /home/hrayr/www/ip.loc/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#5 /home/hrayr/www/ip.loc/framework/web/filters/CInlineFilter.php(58): BannerController->filterAccessControl()
+#6 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#7 /home/hrayr/www/ip.loc/framework/web/CController.php(291): CFilterChain->run()
+#8 /home/hrayr/www/ip.loc/framework/web/CController.php(265): BannerController->runActionWithFilters()
+#9 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): BannerController->run()
+#10 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /home/hrayr/www/ip.loc/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php?r=banner/create
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (75)
+in /home/hrayr/www/ip.loc/index.php (13)
+2013/12/10 21:16:24 [warning] [application] Failed to set unsafe attribute "photo" of "Banner".
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (72)
+in /home/hrayr/www/ip.loc/index.php (13)
+2013/12/10 21:16:24 [error] [php] move_uploaded_file(): The second argument to copy() function cannot be a directory (/home/hrayr/www/ip.loc/framework/web/CUploadedFile.php:198)
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/actions/CInlineAction.php(49): BannerController->actionCreate()
+#1 /home/hrayr/www/ip.loc/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(133): BannerController->runAction()
+#3 /home/hrayr/www/ip.loc/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /home/hrayr/www/ip.loc/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#5 /home/hrayr/www/ip.loc/framework/web/filters/CInlineFilter.php(58): BannerController->filterAccessControl()
+#6 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#7 /home/hrayr/www/ip.loc/framework/web/CController.php(291): CFilterChain->run()
+#8 /home/hrayr/www/ip.loc/framework/web/CController.php(265): BannerController->runActionWithFilters()
+#9 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): BannerController->run()
+#10 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /home/hrayr/www/ip.loc/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php?r=banner/create
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (75)
+in /home/hrayr/www/ip.loc/index.php (13)
+2013/12/10 21:22:58 [warning] [application] Failed to set unsafe attribute "photo" of "Banner".
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (72)
+in /home/hrayr/www/ip.loc/index.php (13)
+2013/12/10 21:22:59 [error] [php] move_uploaded_file(/asa.jpg): failed to open stream: Permission denied (/home/hrayr/www/ip.loc/framework/web/CUploadedFile.php:198)
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/actions/CInlineAction.php(49): BannerController->actionCreate()
+#1 /home/hrayr/www/ip.loc/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(133): BannerController->runAction()
+#3 /home/hrayr/www/ip.loc/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /home/hrayr/www/ip.loc/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#5 /home/hrayr/www/ip.loc/framework/web/filters/CInlineFilter.php(58): BannerController->filterAccessControl()
+#6 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#7 /home/hrayr/www/ip.loc/framework/web/CController.php(291): CFilterChain->run()
+#8 /home/hrayr/www/ip.loc/framework/web/CController.php(265): BannerController->runActionWithFilters()
+#9 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): BannerController->run()
+#10 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /home/hrayr/www/ip.loc/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php?r=banner/create
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (75)
+in /home/hrayr/www/ip.loc/index.php (13)
+2013/12/10 21:23:21 [warning] [application] Failed to set unsafe attribute "photo" of "Banner".
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (72)
+in /home/hrayr/www/ip.loc/index.php (13)
+2013/12/10 21:23:21 [error] [php] move_uploaded_file(asa.jpg): failed to open stream: Permission denied (/home/hrayr/www/ip.loc/framework/web/CUploadedFile.php:198)
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/actions/CInlineAction.php(49): BannerController->actionCreate()
+#1 /home/hrayr/www/ip.loc/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(133): BannerController->runAction()
+#3 /home/hrayr/www/ip.loc/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /home/hrayr/www/ip.loc/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#5 /home/hrayr/www/ip.loc/framework/web/filters/CInlineFilter.php(58): BannerController->filterAccessControl()
+#6 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#7 /home/hrayr/www/ip.loc/framework/web/CController.php(291): CFilterChain->run()
+#8 /home/hrayr/www/ip.loc/framework/web/CController.php(265): BannerController->runActionWithFilters()
+#9 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): BannerController->run()
+#10 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /home/hrayr/www/ip.loc/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php?r=banner/create
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (75)
+in /home/hrayr/www/ip.loc/index.php (13)
+2013/12/10 22:47:12 [warning] [application] Failed to set unsafe attribute "photo" of "Banner".
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (72)
+in /home/hrayr/www/ip.loc/index.php (13)
+2013/12/10 22:47:13 [error] [php] move_uploaded_file(): The second argument to copy() function cannot be a directory (/home/hrayr/www/ip.loc/framework/web/CUploadedFile.php:198)
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/actions/CInlineAction.php(49): BannerController->actionCreate()
+#1 /home/hrayr/www/ip.loc/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(133): BannerController->runAction()
+#3 /home/hrayr/www/ip.loc/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /home/hrayr/www/ip.loc/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#5 /home/hrayr/www/ip.loc/framework/web/filters/CInlineFilter.php(58): BannerController->filterAccessControl()
+#6 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#7 /home/hrayr/www/ip.loc/framework/web/CController.php(291): CFilterChain->run()
+#8 /home/hrayr/www/ip.loc/framework/web/CController.php(265): BannerController->runActionWithFilters()
+#9 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): BannerController->run()
+#10 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /home/hrayr/www/ip.loc/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php?r=banner/create
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (75)
+in /home/hrayr/www/ip.loc/index.php (13)
+2013/12/10 22:48:07 [warning] [application] Failed to set unsafe attribute "photo" of "Banner".
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (72)
+in /home/hrayr/www/ip.loc/index.php (13)
+2013/12/10 22:48:08 [error] [php] move_uploaded_file(/as): failed to open stream: Permission denied (/home/hrayr/www/ip.loc/framework/web/CUploadedFile.php:198)
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/actions/CInlineAction.php(49): BannerController->actionCreate()
+#1 /home/hrayr/www/ip.loc/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(133): BannerController->runAction()
+#3 /home/hrayr/www/ip.loc/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /home/hrayr/www/ip.loc/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#5 /home/hrayr/www/ip.loc/framework/web/filters/CInlineFilter.php(58): BannerController->filterAccessControl()
+#6 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#7 /home/hrayr/www/ip.loc/framework/web/CController.php(291): CFilterChain->run()
+#8 /home/hrayr/www/ip.loc/framework/web/CController.php(265): BannerController->runActionWithFilters()
+#9 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): BannerController->run()
+#10 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /home/hrayr/www/ip.loc/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php?r=banner/create
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (75)
+in /home/hrayr/www/ip.loc/index.php (13)
+2013/12/10 22:48:23 [warning] [application] Failed to set unsafe attribute "photo" of "Banner".
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (72)
+in /home/hrayr/www/ip.loc/index.php (13)
+2013/12/10 22:48:23 [error] [php] move_uploaded_file(): The second argument to copy() function cannot be a directory (/home/hrayr/www/ip.loc/framework/web/CUploadedFile.php:198)
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/actions/CInlineAction.php(49): BannerController->actionCreate()
+#1 /home/hrayr/www/ip.loc/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(133): BannerController->runAction()
+#3 /home/hrayr/www/ip.loc/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /home/hrayr/www/ip.loc/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#5 /home/hrayr/www/ip.loc/framework/web/filters/CInlineFilter.php(58): BannerController->filterAccessControl()
+#6 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#7 /home/hrayr/www/ip.loc/framework/web/CController.php(291): CFilterChain->run()
+#8 /home/hrayr/www/ip.loc/framework/web/CController.php(265): BannerController->runActionWithFilters()
+#9 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): BannerController->run()
+#10 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /home/hrayr/www/ip.loc/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php?r=banner/create
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (75)
+in /home/hrayr/www/ip.loc/index.php (13)
+2013/12/10 22:54:53 [warning] [application] Failed to set unsafe attribute "photo" of "Banner".
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (72)
+in /home/hrayr/www/ip.loc/index.php (13)
+2013/12/10 22:54:53 [error] [php] move_uploaded_file(/home/hrayr/www/ip.loc/protected../images/aas.jpg): failed to open stream: No such file or directory (/home/hrayr/www/ip.loc/framework/web/CUploadedFile.php:198)
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/actions/CInlineAction.php(49): BannerController->actionCreate()
+#1 /home/hrayr/www/ip.loc/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(133): BannerController->runAction()
+#3 /home/hrayr/www/ip.loc/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /home/hrayr/www/ip.loc/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#5 /home/hrayr/www/ip.loc/framework/web/filters/CInlineFilter.php(58): BannerController->filterAccessControl()
+#6 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#7 /home/hrayr/www/ip.loc/framework/web/CController.php(291): CFilterChain->run()
+#8 /home/hrayr/www/ip.loc/framework/web/CController.php(265): BannerController->runActionWithFilters()
+#9 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): BannerController->run()
+#10 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /home/hrayr/www/ip.loc/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php?r=banner/create
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (75)
+in /home/hrayr/www/ip.loc/index.php (13)
+2013/12/10 22:55:08 [warning] [application] Failed to set unsafe attribute "photo" of "Banner".
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (72)
+in /home/hrayr/www/ip.loc/index.php (13)
+2013/12/10 22:55:08 [error] [php] move_uploaded_file(/home/hrayr/www/ip.loc/protected../images): failed to open stream: No such file or directory (/home/hrayr/www/ip.loc/framework/web/CUploadedFile.php:198)
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/actions/CInlineAction.php(49): BannerController->actionCreate()
+#1 /home/hrayr/www/ip.loc/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(133): BannerController->runAction()
+#3 /home/hrayr/www/ip.loc/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /home/hrayr/www/ip.loc/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#5 /home/hrayr/www/ip.loc/framework/web/filters/CInlineFilter.php(58): BannerController->filterAccessControl()
+#6 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#7 /home/hrayr/www/ip.loc/framework/web/CController.php(291): CFilterChain->run()
+#8 /home/hrayr/www/ip.loc/framework/web/CController.php(265): BannerController->runActionWithFilters()
+#9 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): BannerController->run()
+#10 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /home/hrayr/www/ip.loc/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php?r=banner/create
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (75)
+in /home/hrayr/www/ip.loc/index.php (13)
+2013/12/10 22:55:14 [warning] [application] Failed to set unsafe attribute "photo" of "Banner".
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (72)
+in /home/hrayr/www/ip.loc/index.php (13)
+2013/12/10 22:55:15 [error] [php] move_uploaded_file(/home/hrayr/www/ip.loc/protected../images): failed to open stream: No such file or directory (/home/hrayr/www/ip.loc/framework/web/CUploadedFile.php:198)
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/actions/CInlineAction.php(49): BannerController->actionCreate()
+#1 /home/hrayr/www/ip.loc/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(133): BannerController->runAction()
+#3 /home/hrayr/www/ip.loc/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /home/hrayr/www/ip.loc/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#5 /home/hrayr/www/ip.loc/framework/web/filters/CInlineFilter.php(58): BannerController->filterAccessControl()
+#6 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#7 /home/hrayr/www/ip.loc/framework/web/CController.php(291): CFilterChain->run()
+#8 /home/hrayr/www/ip.loc/framework/web/CController.php(265): BannerController->runActionWithFilters()
+#9 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): BannerController->run()
+#10 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /home/hrayr/www/ip.loc/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php?r=banner/create
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (75)
+in /home/hrayr/www/ip.loc/index.php (13)
+2013/12/10 22:55:42 [warning] [application] Failed to set unsafe attribute "photo" of "Banner".
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (72)
+in /home/hrayr/www/ip.loc/index.php (13)
+2013/12/10 22:55:42 [error] [php] move_uploaded_file(): The second argument to copy() function cannot be a directory (/home/hrayr/www/ip.loc/framework/web/CUploadedFile.php:198)
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/actions/CInlineAction.php(49): BannerController->actionCreate()
+#1 /home/hrayr/www/ip.loc/framework/web/CController.php(308): CInlineAction->runWithParams()
+#2 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(133): BannerController->runAction()
+#3 /home/hrayr/www/ip.loc/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /home/hrayr/www/ip.loc/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#5 /home/hrayr/www/ip.loc/framework/web/filters/CInlineFilter.php(58): BannerController->filterAccessControl()
+#6 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#7 /home/hrayr/www/ip.loc/framework/web/CController.php(291): CFilterChain->run()
+#8 /home/hrayr/www/ip.loc/framework/web/CController.php(265): BannerController->runActionWithFilters()
+#9 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): BannerController->run()
+#10 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /home/hrayr/www/ip.loc/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php?r=banner/create
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (75)
+in /home/hrayr/www/ip.loc/index.php (13)
+2013/12/10 22:55:59 [warning] [application] Failed to set unsafe attribute "photo" of "Banner".
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (72)
+in /home/hrayr/www/ip.loc/index.php (13)
+2013/12/10 23:15:22 [warning] [application] Failed to set unsafe attribute "photo" of "Banner".
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (72)
+in /home/hrayr/www/ip.loc/index.php (13)
+2013/12/10 23:34:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "contact".' in /home/hrayr/www/ip.loc/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController('contact')
+#1 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /home/hrayr/www/ip.loc/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/index.php?r=contact
+---
+2013/12/10 23:36:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "media".' in /home/hrayr/www/ip.loc/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController('media')
+#1 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /home/hrayr/www/ip.loc/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/index.php?r=media
+---
+2013/12/13 22:08:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "media".' in /home/hrayr/www/ip.loc/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController('media')
+#1 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /home/hrayr/www/ip.loc/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/index.php?r=media
+---
+2013/12/13 23:18:32 [error] [php] include(/home/hrayr/www/ip.loc/protected/vendors/phpexcel/PHPExcel.php): failed to open stream: No such file or directory (/home/hrayr/www/ip.loc/framework/YiiBase.php:401)
+Stack trace:
+#0 /home/hrayr/www/ip.loc/protected/controllers/SiteController.php(33): spl_autoload_call()
+#1 /home/hrayr/www/ip.loc/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#2 /home/hrayr/www/ip.loc/framework/web/CController.php(308): CInlineAction->runWithParams()
+#3 /home/hrayr/www/ip.loc/framework/web/CController.php(286): SiteController->runAction()
+#4 /home/hrayr/www/ip.loc/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#5 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): SiteController->run()
+#6 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#7 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#8 /home/hrayr/www/ip.loc/index.php(19): CWebApplication->run()
+REQUEST_URI=/index.php?r=site
+in /home/hrayr/www/ip.loc/protected/controllers/SiteController.php (33)
+in /home/hrayr/www/ip.loc/index.php (19)
+2013/12/14 00:18:53 [error] [php] ZipArchive::getFromName(): Invalid or unitialized Zip object (/home/hrayr/www/ip.loc/protected/vendors/phpexcel/PHPExcel/Reader/Excel2007.php:428)
+Stack trace:
+#0 /home/hrayr/www/ip.loc/protected/controllers/SiteController.php(34): PHPExcel_Reader_Excel2007->load()
+#1 /home/hrayr/www/ip.loc/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#2 /home/hrayr/www/ip.loc/framework/web/CController.php(308): CInlineAction->runWithParams()
+#3 /home/hrayr/www/ip.loc/framework/web/CController.php(286): SiteController->runAction()
+#4 /home/hrayr/www/ip.loc/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#5 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): SiteController->run()
+#6 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#7 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#8 /home/hrayr/www/ip.loc/index.php(29): CWebApplication->run()
+REQUEST_URI=/index.php?r=site
+in /home/hrayr/www/ip.loc/protected/vendors/phpexcel/PHPExcel/Reader/Excel2007.php (428)
+in /home/hrayr/www/ip.loc/protected/vendors/phpexcel/PHPExcel/Reader/Excel2007.php (501)
+in /home/hrayr/www/ip.loc/protected/controllers/SiteController.php (34)
+2013/12/14 00:21:33 [error] [php] ZipArchive::getFromName(): Invalid or unitialized Zip object (/home/hrayr/www/ip.loc/protected/vendors/phpexcel/PHPExcel/Reader/Excel2007.php:428)
+Stack trace:
+#0 /home/hrayr/www/ip.loc/protected/controllers/SiteController.php(34): PHPExcel_Reader_Excel2007->load()
+#1 /home/hrayr/www/ip.loc/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#2 /home/hrayr/www/ip.loc/framework/web/CController.php(308): CInlineAction->runWithParams()
+#3 /home/hrayr/www/ip.loc/framework/web/CController.php(286): SiteController->runAction()
+#4 /home/hrayr/www/ip.loc/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#5 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): SiteController->run()
+#6 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#7 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#8 /home/hrayr/www/ip.loc/index.php(29): CWebApplication->run()
+REQUEST_URI=/index.php?r=site
+in /home/hrayr/www/ip.loc/protected/vendors/phpexcel/PHPExcel/Reader/Excel2007.php (428)
+in /home/hrayr/www/ip.loc/protected/vendors/phpexcel/PHPExcel/Reader/Excel2007.php (501)
+in /home/hrayr/www/ip.loc/protected/controllers/SiteController.php (34)
+2013/12/14 00:23:47 [error] [php] ZipArchive::getFromName(): Invalid or unitialized Zip object (/home/hrayr/www/ip.loc/protected/vendors/phpexcel/PHPExcel/Reader/Excel2007.php:428)
+Stack trace:
+#0 /home/hrayr/www/ip.loc/protected/controllers/SiteController.php(34): PHPExcel_Reader_Excel2007->load()
+#1 /home/hrayr/www/ip.loc/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#2 /home/hrayr/www/ip.loc/framework/web/CController.php(308): CInlineAction->runWithParams()
+#3 /home/hrayr/www/ip.loc/framework/web/CController.php(286): SiteController->runAction()
+#4 /home/hrayr/www/ip.loc/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#5 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): SiteController->run()
+#6 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#7 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#8 /home/hrayr/www/ip.loc/index.php(29): CWebApplication->run()
+REQUEST_URI=/index.php?r=site
+in /home/hrayr/www/ip.loc/protected/vendors/phpexcel/PHPExcel/Reader/Excel2007.php (428)
+in /home/hrayr/www/ip.loc/protected/vendors/phpexcel/PHPExcel/Reader/Excel2007.php (501)
+in /home/hrayr/www/ip.loc/protected/controllers/SiteController.php (34)
+2013/12/14 00:32:28 [error] [exception.Exception] exception 'Exception' with message 'Active sheet index is out of bounds.' in /home/hrayr/www/ip.loc/protected/vendors/phpexcel/PHPExcel.php:393
+Stack trace:
+#0 /home/hrayr/www/ip.loc/protected/controllers/SiteController.php(42): PHPExcel->setActiveSheetIndex(1)
+#1 /home/hrayr/www/ip.loc/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#2 /home/hrayr/www/ip.loc/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#3 /home/hrayr/www/ip.loc/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#4 /home/hrayr/www/ip.loc/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): CController->run('')
+#6 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController('site')
+#7 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#8 /home/hrayr/www/ip.loc/index.php(29): CApplication->run()
+#9 {main}
+REQUEST_URI=/index.php?r=site
+---
+2013/12/14 00:33:05 [error] [php] Undefined variable: objWorksheet (/home/hrayr/www/ip.loc/protected/controllers/SiteController.php:45)
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/CController.php(286): SiteController->runAction()
+#1 /home/hrayr/www/ip.loc/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /home/hrayr/www/ip.loc/index.php(29): CWebApplication->run()
+REQUEST_URI=/index.php?r=site
+in /home/hrayr/www/ip.loc/protected/controllers/SiteController.php (45)
+in /home/hrayr/www/ip.loc/index.php (29)
+2013/12/14 00:37:53 [error] [exception.CException] exception 'CException' with message 'Property "SiteController.table" is not defined.' in /home/hrayr/www/ip.loc/framework/base/CComponent.php:130
+Stack trace:
+#0 /home/hrayr/www/ip.loc/protected/views/site/index.php(3): CComponent->__get('table')
+#1 /home/hrayr/www/ip.loc/framework/web/CBaseController.php(126): require('/home/hrayr/www...')
+#2 /home/hrayr/www/ip.loc/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/hrayr/www...', Array, true)
+#3 /home/hrayr/www/ip.loc/framework/web/CController.php(869): CBaseController->renderFile('/home/hrayr/www...', Array, true)
+#4 /home/hrayr/www/ip.loc/framework/web/CController.php(782): CController->renderPartial('index', Array, true)
+#5 /home/hrayr/www/ip.loc/protected/controllers/SiteController.php(59): CController->render('index', Array)
+#6 /home/hrayr/www/ip.loc/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#7 /home/hrayr/www/ip.loc/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#8 /home/hrayr/www/ip.loc/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#9 /home/hrayr/www/ip.loc/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): CController->run('')
+#11 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController('site')
+#12 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#13 /home/hrayr/www/ip.loc/index.php(29): CApplication->run()
+#14 {main}
+REQUEST_URI=/index.php?r=site
+---
+2013/12/16 16:56:26 [error] [php] Undefined variable: table (/home/hrayr/www/ip.loc/protected/views/site/index.php:3)
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/CController.php(869): SiteController->renderFile()
+#1 /home/hrayr/www/ip.loc/framework/web/CController.php(782): SiteController->renderPartial()
+#2 /home/hrayr/www/ip.loc/protected/controllers/SiteController.php(59): SiteController->render()
+#3 /home/hrayr/www/ip.loc/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#4 /home/hrayr/www/ip.loc/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /home/hrayr/www/ip.loc/framework/web/CController.php(286): SiteController->runAction()
+#6 /home/hrayr/www/ip.loc/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#7 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): SiteController->run()
+#8 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /home/hrayr/www/ip.loc/index.php(29): CWebApplication->run()
+REQUEST_URI=/
+in /home/hrayr/www/ip.loc/protected/views/site/index.php (3)
+in /home/hrayr/www/ip.loc/protected/controllers/SiteController.php (59)
+in /home/hrayr/www/ip.loc/index.php (29)
+2013/12/17 01:08:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "getSites".' in /home/hrayr/www/ip.loc/framework/web/CController.php:483
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/CController.php(270): CController->missingAction('getSites')
+#1 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): CController->run('getSites')
+#2 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController('site/getSites')
+#3 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/hrayr/www/ip.loc/index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php?r=site/getSites
+---
+2013/12/17 01:09:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "GetSites".' in /home/hrayr/www/ip.loc/framework/web/CController.php:483
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/CController.php(270): CController->missingAction('GetSites')
+#1 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): CController->run('GetSites')
+#2 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController('site/GetSites')
+#3 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/hrayr/www/ip.loc/index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php?r=site/GetSites
+---
+2013/12/17 01:09:22 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /home/hrayr/www/ip.loc/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /home/hrayr/www/ip.loc/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /home/hrayr/www/ip.loc/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /home/hrayr/www/ip.loc/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /home/hrayr/www/ip.loc/framework/web/CController.php(291): CFilterChain->run()
+#6 /home/hrayr/www/ip.loc/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): CController->run('GetSites')
+#8 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController('sites/GetSites')
+#9 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /home/hrayr/www/ip.loc/index.php(29): CApplication->run()
+#11 {main}
+REQUEST_URI=/index.php?r=sites/GetSites
+HTTP_REFERER=http://ip.loc/index.php?r=site/login
+---
+2013/12/17 01:09:29 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /home/hrayr/www/ip.loc/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /home/hrayr/www/ip.loc/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /home/hrayr/www/ip.loc/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /home/hrayr/www/ip.loc/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /home/hrayr/www/ip.loc/framework/web/CController.php(291): CFilterChain->run()
+#6 /home/hrayr/www/ip.loc/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): CController->run('GetSites')
+#8 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController('sites/GetSites')
+#9 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /home/hrayr/www/ip.loc/index.php(29): CApplication->run()
+#11 {main}
+REQUEST_URI=/index.php?r=sites/GetSites
+---
+2013/12/17 01:09:33 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /home/hrayr/www/ip.loc/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /home/hrayr/www/ip.loc/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /home/hrayr/www/ip.loc/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /home/hrayr/www/ip.loc/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /home/hrayr/www/ip.loc/framework/web/CController.php(291): CFilterChain->run()
+#6 /home/hrayr/www/ip.loc/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): CController->run('getSites')
+#8 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController('sites/getSites')
+#9 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /home/hrayr/www/ip.loc/index.php(29): CApplication->run()
+#11 {main}
+REQUEST_URI=/index.php?r=sites/getSites
+---
+2013/12/17 01:09:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "get-sites".' in /home/hrayr/www/ip.loc/framework/web/CController.php:483
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/CController.php(270): CController->missingAction('get-sites')
+#1 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): CController->run('get-sites')
+#2 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController('sites/get-sites')
+#3 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/hrayr/www/ip.loc/index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php?r=sites/get-sites
+---
+2013/12/17 01:11:40 [error] [php] Undefined index: ajaxData (/home/hrayr/www/ip.loc/protected/controllers/SiteController.php:71)
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/CController.php(286): SiteController->runAction()
+#1 /home/hrayr/www/ip.loc/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /home/hrayr/www/ip.loc/index.php(29): CWebApplication->run()
+REQUEST_URI=/index.php?r=site/GetSites
+in /home/hrayr/www/ip.loc/protected/controllers/SiteController.php (71)
+in /home/hrayr/www/ip.loc/index.php (29)
+2013/12/17 01:12:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "get-sites".' in /home/hrayr/www/ip.loc/framework/web/CController.php:483
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/CController.php(270): CController->missingAction('get-sites')
+#1 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): CController->run('get-sites')
+#2 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController('sites/get-sites')
+#3 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/hrayr/www/ip.loc/index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php?r=sites/get-sites
+---
+2013/12/19 18:49:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "GetSites?id=15".' in /home/hrayr/www/ip.loc/framework/web/CController.php:483
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/CController.php(270): CController->missingAction('GetSites?id=15')
+#1 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): CController->run('GetSites?id=15')
+#2 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController('site/GetSites?i...')
+#3 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/hrayr/www/ip.loc/index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php?r=site/GetSites?id=15
+---
+2013/12/19 19:13:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "GetSites?id=15".' in /home/hrayr/www/ip.loc/framework/web/CController.php:483
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/CController.php(270): CController->missingAction('GetSites?id=15')
+#1 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): CController->run('GetSites?id=15')
+#2 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController('site/GetSites?i...')
+#3 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/hrayr/www/ip.loc/index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php?r=site/GetSites?id=15
+---
+2013/12/19 19:13:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "GetBanners?id=15".' in /home/hrayr/www/ip.loc/framework/web/CController.php:483
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/CController.php(270): CController->missingAction('GetBanners?id=1...')
+#1 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): CController->run('GetBanners?id=1...')
+#2 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController('site/GetBanners...')
+#3 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/hrayr/www/ip.loc/index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php?r=site/GetBanners?id=15&_=1387465999269
+HTTP_REFERER=http://ip.loc/
+---
+2013/12/19 19:13:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "GetBanners?id=15".' in /home/hrayr/www/ip.loc/framework/web/CController.php:483
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/CController.php(270): CController->missingAction('GetBanners?id=1...')
+#1 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): CController->run('GetBanners?id=1...')
+#2 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController('site/GetBanners...')
+#3 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/hrayr/www/ip.loc/index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php?r=site/GetBanners?id=15&_=1387466008479
+HTTP_REFERER=http://ip.loc/
+---
+2013/12/19 19:14:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "GetBanners?id=15".' in /home/hrayr/www/ip.loc/framework/web/CController.php:483
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/CController.php(270): CController->missingAction('GetBanners?id=1...')
+#1 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): CController->run('GetBanners?id=1...')
+#2 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController('site/GetBanners...')
+#3 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/hrayr/www/ip.loc/index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php?r=site/GetBanners?id=15&_=1387466049104
+HTTP_REFERER=http://ip.loc/
+---
+2013/12/19 19:14:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "GetBanners?id=15".' in /home/hrayr/www/ip.loc/framework/web/CController.php:483
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/web/CController.php(270): CController->missingAction('GetBanners?id=1...')
+#1 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): CController->run('GetBanners?id=1...')
+#2 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController('site/GetBanners...')
+#3 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/hrayr/www/ip.loc/index.php(29): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php?r=site/GetBanners?id=15&_=1387466058846
+HTTP_REFERER=http://ip.loc/
+---
+2013/12/20 13:48:05 [error] [exception.CException] exception 'CException' with message 'Property "Banner.ctr" is not defined.' in /home/hrayr/www/ip.loc/framework/base/CComponent.php:130
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/db/ar/CActiveRecord.php(145): CComponent->__get('ctr')
+#1 /home/hrayr/www/ip.loc/framework/web/helpers/CHtml.php(2529): CActiveRecord->__get('ctr')
+#2 /home/hrayr/www/ip.loc/framework/web/helpers/CHtml.php(2252): CHtml::resolveValue(Object(Banner), 'ctr')
+#3 /home/hrayr/www/ip.loc/framework/web/helpers/CHtml.php(1434): CHtml::activeInputField('text', Object(Banner), 'ctr', Array)
+#4 /home/hrayr/www/ip.loc/framework/web/widgets/CActiveForm.php(725): CHtml::activeTextField(Object(Banner), 'ctr', Array)
+#5 /home/hrayr/www/ip.loc/protected/views/banner/_form.php(63): CActiveForm->textField(Object(Banner), 'ctr')
+#6 /home/hrayr/www/ip.loc/framework/web/CBaseController.php(126): require('/home/hrayr/www...')
+#7 /home/hrayr/www/ip.loc/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/hrayr/www...', Array, true)
+#8 /home/hrayr/www/ip.loc/framework/web/CController.php(869): CBaseController->renderFile('/home/hrayr/www...', Array, true)
+#9 /home/hrayr/www/ip.loc/protected/views/banner/create.php(18): CController->renderPartial('_form', Array)
+#10 /home/hrayr/www/ip.loc/framework/web/CBaseController.php(126): require('/home/hrayr/www...')
+#11 /home/hrayr/www/ip.loc/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/hrayr/www...', Array, true)
+#12 /home/hrayr/www/ip.loc/framework/web/CController.php(869): CBaseController->renderFile('/home/hrayr/www...', Array, true)
+#13 /home/hrayr/www/ip.loc/framework/web/CController.php(782): CController->renderPartial('create', Array, true)
+#14 /home/hrayr/www/ip.loc/protected/controllers/BannerController.php(82): CController->render('create', Array)
+#15 /home/hrayr/www/ip.loc/framework/web/actions/CInlineAction.php(49): BannerController->actionCreate()
+#16 /home/hrayr/www/ip.loc/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#17 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#18 /home/hrayr/www/ip.loc/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#19 /home/hrayr/www/ip.loc/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#20 /home/hrayr/www/ip.loc/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#21 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#22 /home/hrayr/www/ip.loc/framework/web/CController.php(291): CFilterChain->run()
+#23 /home/hrayr/www/ip.loc/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#24 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): CController->run('create')
+#25 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController('banner/create')
+#26 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#27 /home/hrayr/www/ip.loc/index.php(29): CApplication->run()
+#28 {main}
+REQUEST_URI=/index.php?r=banner/create
+HTTP_REFERER=http://ip.loc/index.php?r=site/login
+---
+2013/12/20 13:51:28 [error] [exception.CException] exception 'CException' with message 'Property "Banner.ctr" is not defined.' in /home/hrayr/www/ip.loc/framework/base/CComponent.php:130
+Stack trace:
+#0 /home/hrayr/www/ip.loc/framework/db/ar/CActiveRecord.php(145): CComponent->__get('ctr')
+#1 /home/hrayr/www/ip.loc/framework/web/helpers/CHtml.php(2529): CActiveRecord->__get('ctr')
+#2 /home/hrayr/www/ip.loc/framework/web/helpers/CHtml.php(2252): CHtml::resolveValue(Object(Banner), 'ctr')
+#3 /home/hrayr/www/ip.loc/framework/web/helpers/CHtml.php(1434): CHtml::activeInputField('text', Object(Banner), 'ctr', Array)
+#4 /home/hrayr/www/ip.loc/framework/web/widgets/CActiveForm.php(725): CHtml::activeTextField(Object(Banner), 'ctr', Array)
+#5 /home/hrayr/www/ip.loc/protected/views/banner/_form.php(63): CActiveForm->textField(Object(Banner), 'ctr')
+#6 /home/hrayr/www/ip.loc/framework/web/CBaseController.php(126): require('/home/hrayr/www...')
+#7 /home/hrayr/www/ip.loc/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/hrayr/www...', Array, true)
+#8 /home/hrayr/www/ip.loc/framework/web/CController.php(869): CBaseController->renderFile('/home/hrayr/www...', Array, true)
+#9 /home/hrayr/www/ip.loc/protected/views/banner/create.php(18): CController->renderPartial('_form', Array)
+#10 /home/hrayr/www/ip.loc/framework/web/CBaseController.php(126): require('/home/hrayr/www...')
+#11 /home/hrayr/www/ip.loc/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/hrayr/www...', Array, true)
+#12 /home/hrayr/www/ip.loc/framework/web/CController.php(869): CBaseController->renderFile('/home/hrayr/www...', Array, true)
+#13 /home/hrayr/www/ip.loc/framework/web/CController.php(782): CController->renderPartial('create', Array, true)
+#14 /home/hrayr/www/ip.loc/protected/controllers/BannerController.php(82): CController->render('create', Array)
+#15 /home/hrayr/www/ip.loc/framework/web/actions/CInlineAction.php(49): BannerController->actionCreate()
+#16 /home/hrayr/www/ip.loc/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#17 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#18 /home/hrayr/www/ip.loc/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#19 /home/hrayr/www/ip.loc/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#20 /home/hrayr/www/ip.loc/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#21 /home/hrayr/www/ip.loc/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#22 /home/hrayr/www/ip.loc/framework/web/CController.php(291): CFilterChain->run()
+#23 /home/hrayr/www/ip.loc/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#24 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): CController->run('create')
+#25 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController('banner/create')
+#26 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#27 /home/hrayr/www/ip.loc/index.php(29): CApplication->run()
+#28 {main}
+REQUEST_URI=/index.php?r=banner/create
+HTTP_REFERER=http://ip.loc/index.php?r=site/login
+---
+2013/12/20 13:53:05 [warning] [application] Failed to set unsafe attribute "photo" of "Banner".
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (72)
+in /home/hrayr/www/ip.loc/index.php (29)
+2013/12/20 13:53:05 [warning] [application] Failed to set unsafe attribute "ctr" of "Banner".
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (72)
+in /home/hrayr/www/ip.loc/index.php (29)
+2013/12/20 13:53:12 [warning] [application] Failed to set unsafe attribute "photo" of "Banner".
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (72)
+in /home/hrayr/www/ip.loc/index.php (29)
+2013/12/20 13:53:12 [warning] [application] Failed to set unsafe attribute "ctr" of "Banner".
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (72)
+in /home/hrayr/www/ip.loc/index.php (29)
+2013/12/20 13:57:03 [warning] [application] Failed to set unsafe attribute "photo" of "Banner".
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (99)
+in /home/hrayr/www/ip.loc/index.php (29)
+2013/12/20 13:57:03 [warning] [application] Failed to set unsafe attribute "ctr" of "Banner".
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (99)
+in /home/hrayr/www/ip.loc/index.php (29)
+2013/12/20 13:57:13 [warning] [application] Failed to set unsafe attribute "photo" of "Banner".
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (99)
+in /home/hrayr/www/ip.loc/index.php (29)
+2013/12/20 13:57:13 [warning] [application] Failed to set unsafe attribute "ctr" of "Banner".
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (99)
+in /home/hrayr/www/ip.loc/index.php (29)
+2013/12/20 13:58:15 [warning] [application] Failed to set unsafe attribute "photo" of "Banner".
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (99)
+in /home/hrayr/www/ip.loc/index.php (29)
+2013/12/20 13:58:15 [warning] [application] Failed to set unsafe attribute "ctr" of "Banner".
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (99)
+in /home/hrayr/www/ip.loc/index.php (29)
+2013/12/20 13:58:30 [warning] [application] Failed to set unsafe attribute "photo" of "Banner".
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (99)
+in /home/hrayr/www/ip.loc/index.php (29)
+2013/12/20 13:58:30 [warning] [application] Failed to set unsafe attribute "ctr" of "Banner".
+in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php (99)
+in /home/hrayr/www/ip.loc/index.php (29)
+2013/12/23 19:48:54 [error] [php] require_once(Text/Diff.php): failed to open stream: No such file or directory (/home/hrayr/www/ip.loc/framework/gii/components/TextDiff.php:6)
+Stack trace:
+#0 unknown(0): autoload()
+#1 /home/hrayr/www/ip.loc/framework/gii/CCodeGenerator.php(109): spl_autoload_call()
+#2 /home/hrayr/www/ip.loc/framework/web/actions/CInlineAction.php(49): ModelGenerator->actionDiff()
+#3 /home/hrayr/www/ip.loc/framework/web/CController.php(308): CInlineAction->runWithParams()
+#4 /home/hrayr/www/ip.loc/framework/web/CController.php(286): ModelGenerator->runAction()
+#5 /home/hrayr/www/ip.loc/framework/web/CController.php(265): ModelGenerator->runActionWithFilters()
+#6 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(282): ModelGenerator->run()
+#7 /home/hrayr/www/ip.loc/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#8 /home/hrayr/www/ip.loc/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#9 /home/hrayr/www/ip.loc/index.php(29): CWebApplication->run()
+REQUEST_URI=/index.php?r=gii/model/diff&id=0
+in /home/hrayr/www/ip.loc/index.php (29)

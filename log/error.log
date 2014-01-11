@@ -1,0 +1,118 @@
+[Sun Nov 17 00:40:30 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ibonus.loc/favicon.ico
+[Sun Nov 17 23:52:18 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ibonus.loc/favicon.ico
+[Wed Nov 27 17:06:01 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ibonus.loc
+[Wed Nov 27 17:06:10 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ibonus.loc
+[Wed Nov 27 17:06:10 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ibonus.loc
+[Wed Nov 27 17:06:25 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ibonus.loc
+[Mon Dec 09 23:47:56 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/favicon.ico
+[Tue Dec 10 00:12:38 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/favicon.ico
+[Tue Dec 10 01:00:53 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/favicon.ico
+[Tue Dec 10 18:12:58 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/favicon.ico
+[Fri Dec 13 22:07:39 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/favicon.ico
+[Fri Dec 13 22:36:12 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/favicon.ico
+[Fri Dec 13 23:16:22 2013] [error] [client 127.0.0.1] PHP Fatal error:  Class 'PHPExcel_Shared_ZipStreamWrapper' not found in /home/hrayr/www/ip.loc/index.php on line 21
+[Fri Dec 13 23:17:12 2013] [error] [client 127.0.0.1] PHP Fatal error:  Nesting level too deep - recursive dependency? in /home/hrayr/www/ip.loc/framework/base/CErrorHandler.php on line 417
+[Fri Dec 13 23:17:12 2013] [error] [client 127.0.0.1] PHP Fatal error:  Nesting level too deep - recursive dependency? in Unknown on line 0
+[Sat Dec 14 00:04:40 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/favicon.ico
+[Sat Dec 14 00:21:06 2013] [error] [client 127.0.0.1] PHP Fatal error:  Class 'PHPExcel_Reader_Excel' not found in /home/hrayr/www/ip.loc/protected/vendors/phpexcel/PHPExcel/IOFactory.php on line 170
+[Mon Dec 16 16:55:39 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/favicon.ico
+[Mon Dec 16 16:58:45 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/scripts, referer: http://ip.loc/
+[Mon Dec 16 16:58:46 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/scripts, referer: http://ip.loc/
+[Mon Dec 16 17:02:43 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/scripts, referer: http://ip.loc/
+[Mon Dec 16 17:02:43 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/scripts, referer: http://ip.loc/
+[Mon Dec 16 17:08:02 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/scripts, referer: http://ip.loc/
+[Mon Dec 16 17:10:30 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jqwidgets/gettheme.js, referer: http://ip.loc/
+[Mon Dec 16 17:11:06 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/sampledata, referer: http://ip.loc/
+[Tue Dec 17 01:19:02 2013] [error] [client 127.0.0.1] PHP Parse error:  syntax error, unexpected ';' in /home/hrayr/www/ip.loc/protected/controllers/SiteController.php on line 81, referer: http://ip.loc/index.php?r=site
+[Tue Dec 17 01:19:03 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/favicon.ico
+[Tue Dec 17 01:19:07 2013] [error] [client 127.0.0.1] PHP Parse error:  syntax error, unexpected ';' in /home/hrayr/www/ip.loc/protected/controllers/SiteController.php on line 81
+[Wed Dec 18 15:05:09 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/favicon.ico
+[Wed Dec 18 16:45:31 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/favicon.ico
+[Wed Dec 18 18:03:12 2013] [error] [client 127.0.0.1] PHP Fatal error:  Call to a member function toJson() on a non-object in /home/hrayr/www/ip.loc/protected/controllers/SiteController.php on line 76
+[Wed Dec 18 18:38:31 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/favicon.ico
+[Thu Dec 19 17:52:53 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/favicon.ico
+[Thu Dec 19 18:24:15 2013] [error] [client 127.0.0.1] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/hrayr/www/ip.loc/protected/controllers/SiteController.php on line 82
+[Thu Dec 19 18:28:18 2013] [error] [client 127.0.0.1] PHP Parse error:  syntax error, unexpected ';' in /home/hrayr/www/ip.loc/protected/controllers/SiteController.php on line 83
+[Thu Dec 19 19:27:40 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/favicon.ico
+[Thu Dec 19 19:27:40 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/favicon.ico
+[Thu Dec 19 22:07:51 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/favicon.ico
+[Thu Dec 19 22:07:51 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/favicon.ico
+[Fri Dec 20 12:03:51 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/favicon.ico
+[Fri Dec 20 12:03:52 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/favicon.ico
+[Mon Dec 23 19:47:49 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/favicon.ico
+[Thu Dec 26 21:34:23 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/favicon.ico
+[Thu Dec 26 23:14:48 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Thu Dec 26 23:46:12 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Thu Dec 26 23:47:43 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Thu Dec 26 23:48:16 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 10:08:42 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/favicon.ico
+[Fri Dec 27 10:08:49 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 10:10:21 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 10:10:46 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 10:11:15 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 10:29:35 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 10:30:44 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 10:30:46 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 10:32:22 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 10:32:26 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 10:33:11 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 10:35:16 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 10:37:13 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 10:37:55 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 11:03:07 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 11:03:10 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 11:03:33 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 11:07:35 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 11:07:53 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 11:10:23 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 11:12:51 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 11:13:39 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 11:13:51 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 11:14:06 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 11:14:38 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 11:14:50 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 11:15:14 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 11:28:00 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 11:28:55 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 11:29:47 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 11:48:49 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 11:49:20 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 11:50:09 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 11:52:23 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 11:54:43 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 11:56:01 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 11:58:30 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 12:12:45 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 12:54:59 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 12:58:39 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 12:58:47 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 12:59:57 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 13:00:24 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 13:00:57 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 13:01:25 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 13:04:33 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 13:05:00 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 13:06:11 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 13:06:23 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 13:06:35 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 13:06:43 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 13:08:31 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 13:12:16 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 13:12:57 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Dec 27 13:17:36 2013] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Thu Jan 09 15:41:09 2014] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/favicon.ico
+[Thu Jan 09 16:01:00 2014] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Thu Jan 09 16:01:27 2014] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Thu Jan 09 16:24:55 2014] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Thu Jan 09 16:25:17 2014] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Thu Jan 09 16:42:46 2014] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Thu Jan 09 16:43:01 2014] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Thu Jan 09 16:44:04 2014] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Thu Jan 09 16:44:25 2014] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Thu Jan 09 16:44:45 2014] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Thu Jan 09 16:47:10 2014] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Thu Jan 09 16:48:20 2014] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/js/jquery-1.10.2.min.map, referer: http://ip.loc/
+[Fri Jan 10 12:24:27 2014] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/favicon.ico
+[Fri Jan 10 12:34:46 2014] [error] [client 127.0.0.1] PHP Fatal error:  Call to a member function saveAs() on a non-object in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php on line 75, referer: http://ip.loc/index.php?r=banner/create
+[Fri Jan 10 12:34:52 2014] [error] [client 127.0.0.1] PHP Fatal error:  Call to a member function saveAs() on a non-object in /home/hrayr/www/ip.loc/protected/controllers/BannerController.php on line 75, referer: http://ip.loc/index.php?r=banner/create
+[Sat Jan 11 13:39:25 2014] [error] [client 127.0.0.1] File does not exist: /home/hrayr/www/ip.loc/favicon.ico
