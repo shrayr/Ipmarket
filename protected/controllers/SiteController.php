@@ -84,6 +84,14 @@ class SiteController extends Controller
         echo CJSON::encode($model->findAll($criteria));
 	}
 
+    public function actionGetProducts()
+	{
+        header('Content-Type: application/json; charset="UTF-8"');
+        $model= new Product();
+
+        echo CJSON::encode($model->findAll());
+	}
+
 	/**
 	 * This is the action to handle external exceptions.
 	 */

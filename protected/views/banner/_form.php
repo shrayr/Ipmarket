@@ -66,7 +66,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'duration'); ?>
-		<?php echo $form->textField($model,'duration',array('maxlength'=>45)); ?>
+		<?php echo $form->dropDownList($model,'duration',array('month'=>'By month','view'=>'By View')); ?>
 		<?php echo $form->error($model,'duration'); ?>
 	</div>
 

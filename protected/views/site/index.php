@@ -56,6 +56,28 @@ $(document).ready(function () {
     });
 
     var currentSiteId = $('#allSites').jqxDropDownList('getSelectedItem');
+
+     /*
+     * get products from db
+     * */
+    var productsSource =
+    {
+        datatype: "json",
+        datafields: [
+            { name: 'id' },
+            { name: 'name' },
+            { name: 'price' },
+            { name: 'cost_price' }
+        ],
+        url: 'index.php?r=site/GetProducts',
+        async: false
+    };
+    var productsAdapter = new $.jqx.dataAdapter(productsSource);
+    $("#allProducts").jqxDropDownList({
+        selectedIndex: 0, source: productsAdapter, displayMember: "name", valueMember: "id", width: 200, height: 25, theme: theme
+    });
+
+    var currentSiteId = $('#allSites').jqxDropDownList('getSelectedItem');
     /*
      *  get current site banners from db
      * */
@@ -196,7 +218,6 @@ $(document).ready(function () {
             editable: true,
             theme: theme,
             showaggregates: true,
-            selectionmode: 'singlecell',
             columns: [
                 { text: 'Website Type', datafield: 'website_type', width: 100},
                 { text: 'Website', datafield: 'website', width: 100},
@@ -233,8 +254,89 @@ $(document).ready(function () {
             ]
         });
 
+    var productAdapter = new $.jqx.dataAdapter();
+
+    var generateProduct = function (i) {
+        var row = {};
+        var currentProduct = $("#allProducts").jqxDropDownList('getSelectedItem').originalItem;
+        row['id'] = currentProduct.id;
+        row['name'] = currentProduct.name;
+        row['price'] = currentProduct.price;
+        row['cost_price'] = currentProduct.cost_price;
+        return row;
+    }
+    var row = generateProduct(0);
+    data[0] = row;
+
+    var source =
+    {
+        localdata: productAdapter,
+        datatype: "local",
+        datafields: [
+            { name: 'id', type: 'number' },
+            { name: 'name', type: 'string' },
+            { name: 'price', type: 'string' },
+            { name: 'cost_price', type: 'string' },
+        ],
+        addrow: function (rowid, rowdata, position, commit) {
+            // synchronize with the server - send insert command
+            // call commit with parameter true if the synchronization with the server is successful
+            //and with parameter false if the synchronization failed.
+            // you can pass additional argument to the commit callback which represents the new ID if it is generated from a DB.
+            commit(true);
+        },
+        deleterow: function (rowid, commit) {
+            // synchronize with the server - send delete command
+            // call commit with parameter true if the synchronization with the server is successful
+            //and with parameter false if the synchronization failed.
+            commit(true);
+        },
+        updaterow: function (rowid, newdata, commit) {
+            // synchronize with the server - send update command
+            // call commit with parameter true if the synchronization with the server is successful
+            // and with parameter false if the synchronization failed.
+            commit(true);
+        }
+    };
+    // initialize jqxGrid
+    $("#products").jqxGrid(
+        {
+            width: 1600,
+            showstatusbar: true,
+            statusbarheight: 50,
+            autoheight: true,
+            editable: true,
+            theme: theme,
+            showaggregates: true,
+            columns: [
+                { text: 'Name', datafield: 'name'},
+                { text: 'Price', datafield: 'price',aggregates:['sum']},
+                { text: 'Cost price', datafield: 'cost_price',aggregates:['sum']},
+            ]
+        });
+
+    // Add new product
+    $("#addnewproduct").on('click', function () {
+        var datarow = generateProduct();
+        var commit = $("#products").jqxGrid('addrow', null, datarow);
+    });
+    // Delete selected product
+    $("#deletenewproduct").on('click', function () {
+        var selectedrowindex = $("#products").jqxGrid('getselectedrowindex');
+console.log(selectedrowindex);
+        var rowscount = $("#products").jqxGrid('getdatainformation').rowscount;
+        if (selectedrowindex >= 0 && selectedrowindex < rowscount) {
+            var id = $("#products").jqxGrid('getrowid', selectedrowindex);
+            console.log(id);
+
+            var commit = $("#products").jqxGrid('deleterow', id);
+        }
+    });
+
     $("#addrowbutton").jqxButton({ theme: theme });
     $("#deleterowbutton").jqxButton({ theme: theme });
+    $("#addnewproduct").jqxButton({ theme: theme });
+    $("#deletenewproduct").jqxButton({ theme: theme });
     // update row.
     $("#updaterowbutton").on('click', function () {
         var datarow = generaterow();
@@ -495,6 +597,25 @@ $(document).ready(function () {
     </div>
     <div class="form-group">
         <input id="deleterowbutton" type="button" value="Delete Selected Row"/>
+    </div>
+</div>
+
+<div style="overflow-y: scroll;">
+    <div style="float: left;" id="products">
+    </div>
+</div>
+
+<div class="form-inline">
+    <div class="form-group">
+        <div id='allProducts'>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input id="addnewproduct" type="button" value="Add New Product"/>
+    </div>
+    <div class="form-group">
+        <input id="deletenewproduct" type="button" value="Delete Selected Product"/>
     </div>
 </div>
 <div id="charts">
