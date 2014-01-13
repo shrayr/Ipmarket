@@ -31,8 +31,6 @@ $this->menu=array(
 		'price_rur',
 		'duration',
 		'placement',
-		'placement_type',
 		'type',
-		'price_type',
 	),
 )); ?>

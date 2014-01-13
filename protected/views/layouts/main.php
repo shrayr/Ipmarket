@@ -36,7 +36,10 @@
 				array('label'=>'Sites', 'url'=>array('/sites')),
 				array('label'=>'Banners', 'url'=>array('/banner')),
 				array('label'=>'Agencies', 'url'=>array('/agency')),
+				array('label'=>'Placements', 'url'=>array('/placement')),
+				array('label'=>'Media Type', 'url'=>array('/mediaType')),
 				array('label'=>'Clients', 'url'=>array('/client')),
+				array('label'=>'Products', 'url'=>array('/product')),
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),

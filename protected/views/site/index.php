@@ -192,6 +192,7 @@ $(document).ready(function () {
             width: 1600,
             showstatusbar: true,
             statusbarheight: 50,
+            autoheight: true,
             editable: true,
             theme: theme,
             showaggregates: true,
@@ -249,27 +250,7 @@ $(document).ready(function () {
     $("#addrowbutton").on('click', function () {
         var datarow = generaterow();
         var commit = $("#jqxgrid").jqxGrid('addrow', null, datarow);
-    });
 
-    // delete row.
-    $("#deleterowbutton").on('click', function () {
-        var selectedrowindex = $("#jqxgrid").jqxGrid('getselectedrowindex');
-        var rowscount = $("#jqxgrid").jqxGrid('getdatainformation').rowscount;
-        if (selectedrowindex >= 0 && selectedrowindex < rowscount) {
-            var id = $("#jqxgrid").jqxGrid('getrowid', selectedrowindex);
-            var commit = $("#jqxgrid").jqxGrid('deleterow', id);
-        }
-    });
-    $('#overall').on('click',function(){
-        $('#CPC-1').append(overallCPC);
-        $('#CPM-1').append(overallCPM);
-        $('#clicks-1').append($("#jqxgrid").jqxGrid('getcolumnaggregateddata', 'clicks', ['sum'], true).sum);
-        $('#overallBudget').append($("#jqxgrid").jqxGrid('getcolumnaggregateddata', 'total', ['sum'], true).sum);
-        $('#overallBudgetVat').append($("#jqxgrid").jqxGrid('getcolumnaggregateddata', 'total_vat', ['sum'], true).sum);
-        $('#overallBudgetAgency').append($("#jqxgrid").jqxGrid('getcolumnaggregateddata', 'total', ['sum'], true).sum);
-        $('#viewForecast-1').append($("#jqxgrid").jqxGrid('getcolumnaggregateddata', 'view', ['sum'], true).sum);
-    });
-    $('#createChart').on('click', function () {
         /* create clicks forecast chart */
         var rows = $('#jqxgrid').jqxGrid('getrows', 'clicks');
         var result = {};
@@ -460,6 +441,26 @@ $(document).ready(function () {
         };
         // setup the chart
         $('#cpcChart').jqxChart(settings);
+
+
+        // overalls
+        $('#CPC-1').text(overallCPC);
+        $('#CPM-1').text(overallCPM);
+        $('#clicks-1').text($("#jqxgrid").jqxGrid('getcolumnaggregateddata', 'clicks', ['sum'], true).sum);
+        $('#overallBudget').text($("#jqxgrid").jqxGrid('getcolumnaggregateddata', 'total', ['sum'], true).sum);
+        $('#overallBudgetVat').text($("#jqxgrid").jqxGrid('getcolumnaggregateddata', 'total_vat', ['sum'], true).sum);
+        $('#overallBudgetAgency').text($("#jqxgrid").jqxGrid('getcolumnaggregateddata', 'total', ['sum'], true).sum);
+        $('#viewForecast-1').text($("#jqxgrid").jqxGrid('getcolumnaggregateddata', 'view', ['sum'], true).sum);
+    });
+
+    // delete row.
+    $("#deleterowbutton").on('click', function () {
+        var selectedrowindex = $("#jqxgrid").jqxGrid('getselectedrowindex');
+        var rowscount = $("#jqxgrid").jqxGrid('getdatainformation').rowscount;
+        if (selectedrowindex >= 0 && selectedrowindex < rowscount) {
+            var id = $("#jqxgrid").jqxGrid('getrowid', selectedrowindex);
+            var commit = $("#jqxgrid").jqxGrid('deleterow', id);
+        }
     });
 });
 </script>
@@ -494,12 +495,6 @@ $(document).ready(function () {
     </div>
     <div class="form-group">
         <input id="deleterowbutton" type="button" value="Delete Selected Row"/>
-    </div>
-    <div class="form-group">
-        <input id="createChart" type="button" value="Create chart"/>
-    </div>
-    <div class="form-group">
-        <input id="overall" type="button" value="Show Overalls"/>
     </div>
 </div>
 <div id="charts">

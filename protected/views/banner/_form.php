@@ -72,26 +72,14 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'placement'); ?>
-		<?php echo $form->dropDownList($model,'placement',array('internal'=>'Internal Pages','all'=>'All Pages')); ?>
-		<?php echo $form->error($model,'placement'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'placement_type'); ?>
-		<?php echo $form->dropDownList($model,'placement_type',array('static'=>'Static','article'=>'Article')); ?>
-		<?php echo $form->error($model,'placement_type'); ?>
+        <?php echo $form->dropDownList($model,'placement',CHtml::listData(Placement::model()->findAll(), 'name', 'name'), array('empty'=>'Select Type')); ?>
+        <?php echo $form->error($model,'placement'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'type'); ?>
-		<?php echo $form->dropDownList($model,'type',array('news'=>'News Portal','annoucment'=>'Annoucment portal')); ?>
+        <?php echo $form->dropDownList($model,'type',CHtml::listData(MediaType::model()->findAll(), 'name', 'name'), array('empty'=>'Select Type')); ?>
 		<?php echo $form->error($model,'type'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'price_type'); ?>
-		<?php echo $form->dropDownList($model,'price_type',array('am'=>'AM','ru'=>'RU')); ?>
-		<?php echo $form->error($model,'price_type'); ?>
 	</div>
 
 	<div class="row buttons">

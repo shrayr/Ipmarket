@@ -62,11 +62,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'placement_type'); ?>
-		<?php echo $form->textField($model,'placement_type',array('size'=>45,'maxlength'=>45)); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'type'); ?>
 		<?php echo $form->textField($model,'type',array('size'=>45,'maxlength'=>45)); ?>
 	</div>

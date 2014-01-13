@@ -14,7 +14,6 @@
  * @property double $price_rur
  * @property string $duration
  * @property string $placement
- * @property string $placement_type
  * @property string $type
  * @property string $price_type
  * @property double $ctr
@@ -43,10 +42,10 @@ class Banner extends CActiveRecord
 			array('site_id', 'numerical', 'integerOnly'=>true),
 			array('price_amd, price_us, price_rur, ctr', 'numerical'),
 			array('name, photo', 'length', 'max'=>255),
-			array('size, duration, placement, placement_type, type, price_type', 'length', 'max'=>45),
+			array('size, duration, placement, type, price_type', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, site_id, name, size, photo, price_amd, price_us, price_rur, duration, placement, placement_type, type, price_type, ctr', 'safe', 'on'=>'search'),
+			array('id, site_id, name, size, photo, price_amd, price_us, price_rur, duration, placement, type, price_type, ctr', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -78,8 +77,7 @@ class Banner extends CActiveRecord
 			'price_rur' => 'Price Rur',
 			'duration' => 'Duration',
 			'placement' => 'Placement',
-			'placement_type' => 'Placement Type',
-			'type' => 'Type',
+			'type' => 'Media type',
 			'price_type' => 'Price Type',
 			'ctr' => 'Ctr',
 		);
@@ -113,7 +111,6 @@ class Banner extends CActiveRecord
 		$criteria->compare('price_rur',$this->price_rur);
 		$criteria->compare('duration',$this->duration,true);
 		$criteria->compare('placement',$this->placement,true);
-		$criteria->compare('placement_type',$this->placement_type,true);
 		$criteria->compare('type',$this->type,true);
 		$criteria->compare('price_type',$this->price_type,true);
 		$criteria->compare('ctr',$this->ctr);
