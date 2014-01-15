@@ -24,68 +24,6 @@ $cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxgrid.selection.js');
 $cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxgrid.aggregates.js');
 $cs->registerScriptFile($baseUrl . '/js/gettheme.js');
 $cs->registerCssFile($baseUrl . '/js/jqwidgets/styles/jqx.base.css');?>
-<div>
-    <p><strong>Campaign overall statistics:</strong></p>
-    <p>Campaign overall budjet (without VAT):	<span id="overallBudget"></span></p>
-    <p>Campaign overall budjet including agency fee (without VAT):	<span id="overallBudgetAgency"></span></p>
-    <p>Campaign overall budjet including agency fee (with VAT):	<span id="overallBudgetVat"></span></p>
-    <p><strong>Campaign media statistics:</strong></p>
-    <p>Contacts forecast:	<span id="viewForecast-1"></span></p>
-    <p>Average cost of 1000 views (CPM):	<span id="CPM-1"></span></p>
-    <p>Forecast of number of clicks:	<span id="clicks-1"></span></p>
-    <p>Forecast of cost per click (CPC):	<span id="CPC-1"></span></p>
-    <p>Agency fee:	<span id="agencyFee"></span></p>
-</div>
-<div style="overflow-y: scroll;">
-    <div style="float: left;" id="jqxgrid">
-    </div>
-</div>
-
-<div class="form-inline">
-    <div class="form-group">
-        <div id='allSites'>
-        </div>
-    </div>
-    <div class="form-group">
-        <div id='siteBanners'>
-        </div>
-    </div>
-    <div class="form-group">
-        <input id="addrowbutton" type="button" value="Add New Row"/>
-    </div>
-    <div class="form-group">
-        <input id="deleterowbutton" type="button" value="Delete Selected Row"/>
-    </div>
-</div>
-<br/>
-<div style="overflow-y: scroll;">
-    <div style="float: left;" id="products">
-    </div>
-</div>
-
-<div class="form-inline">
-    <div class="form-group">
-        <div id='allProducts'>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <input id="addnewproduct" type="button" value="Add New Product"/>
-    </div>
-    <div class="form-group">
-        <input id="deletenewproduct" type="button" value="Delete Selected Product"/>
-    </div>
-</div>
-<div id="charts">
-    <div id='clicksChart' style="float:left;width: 420px; height: 400px; position: relative; left: 0px;top: 0px;">
-    </div>
-    <div id='viewsChart' style="float:right;width: 420px; height: 400px; position: relative; left: 0px;top: 0px;">
-    </div>
-    <div id='cpmChart' style="float:left;width: 420px; height: 400px; position: relative; left: 0px;top: 0px;">
-    </div>
-    <div id='cpcChart' style="float:right;width: 420px; height: 400px; position: relative; left: 0px;top: 0px;">
-    </div>
-</div>
 <script type="text/javascript">
 $(document).ready(function () {
     var overallBudget;
@@ -100,6 +38,7 @@ $(document).ready(function () {
     var theme = getDemoTheme();
     // prepare the data
     var data = {};
+    var productData = {};
     /*
      * get sites from db
      * */
@@ -123,7 +62,7 @@ $(document).ready(function () {
 
     var currentSiteId = $('#allSites').jqxDropDownList('getSelectedItem');
 
-    /*
+     /*
      * get products from db
      * */
     var productsSource =
@@ -335,7 +274,7 @@ $(document).ready(function () {
         return row;
     }
     var row = generateProduct(0);
-    data[0] = row;
+    productData[0] = row;
 
     var source =
     {
@@ -392,7 +331,7 @@ $(document).ready(function () {
     // Delete selected product
     $("#deletenewproduct").on('click', function () {
         var selectedrowindex = $("#products").jqxGrid('getselectedrowindex');
-        console.log(selectedrowindex);
+console.log(selectedrowindex);
         var rowscount = $("#products").jqxGrid('getdatainformation').rowscount;
         if (selectedrowindex >= 0 && selectedrowindex < rowscount) {
             var id = $("#products").jqxGrid('getrowid', selectedrowindex);
@@ -635,3 +574,65 @@ $(document).ready(function () {
     });
 });
 </script>
+<div>
+    <p><strong>Campaign overall statistics:</strong></p>
+    <p>Campaign overall budjet (without VAT):	<span id="overallBudget"></span></p>
+    <p>Campaign overall budjet including agency fee (without VAT):	<span id="overallBudgetAgency"></span></p>
+    <p>Campaign overall budjet including agency fee (with VAT):	<span id="overallBudgetVat"></span></p>
+    <p><strong>Campaign media statistics:</strong></p>
+    <p>Contacts forecast:	<span id="viewForecast-1"></span></p>
+    <p>Average cost of 1000 views (CPM):	<span id="CPM-1"></span></p>
+    <p>Forecast of number of clicks:	<span id="clicks-1"></span></p>
+    <p>Forecast of cost per click (CPC):	<span id="CPC-1"></span></p>
+    <p>Agency fee:	<span id="agencyFee"></span></p>
+</div>
+<div style="overflow-y: scroll;">
+    <div style="float: left;" id="jqxgrid">
+    </div>
+</div>
+
+<div class="form-inline">
+    <div class="form-group">
+        <div id='allSites'>
+        </div>
+    </div>
+    <div class="form-group">
+        <div id='siteBanners'>
+        </div>
+    </div>
+    <div class="form-group">
+        <input id="addrowbutton" type="button" value="Add New Row"/>
+    </div>
+    <div class="form-group">
+        <input id="deleterowbutton" type="button" value="Delete Selected Row"/>
+    </div>
+</div>
+<br/>
+<div style="overflow-y: scroll;">
+    <div style="float: left;" id="products">
+    </div>
+</div>
+
+<div class="form-inline">
+    <div class="form-group">
+        <div id='allProducts'>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input id="addnewproduct" type="button" value="Add New Product"/>
+    </div>
+    <div class="form-group">
+        <input id="deletenewproduct" type="button" value="Delete Selected Product"/>
+    </div>
+</div>
+<div id="charts">
+    <div id='clicksChart' style="float:left;width: 420px; height: 400px; position: relative; left: 0px;top: 0px;">
+    </div>
+    <div id='viewsChart' style="float:right;width: 420px; height: 400px; position: relative; left: 0px;top: 0px;">
+    </div>
+    <div id='cpmChart' style="float:left;width: 420px; height: 400px; position: relative; left: 0px;top: 0px;">
+    </div>
+    <div id='cpcChart' style="float:right;width: 420px; height: 400px; position: relative; left: 0px;top: 0px;">
+    </div>
+</div>
