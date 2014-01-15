@@ -7,6 +7,10 @@ $cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxcore.js');
 $cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxchart.js');
 $cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxdata.js');
 $cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxbuttons.js');
+$cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxdatetimeinput.js');
+$cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxcalendar.js');
+$cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxtooltip.js');
+$cs->registerScriptFile($baseUrl . '/js/jqwidgets/globalization/globalize.js');
 $cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxscrollbar.js');
 $cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxmenu.js');
 $cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxcheckbox.js');
@@ -30,7 +34,7 @@ $(document).ready(function () {
     var overallClicks;
     var overallCPC;
     var overallAgencyFee;
-
+    var currentDate = new Date();
     var theme = getDemoTheme();
     // prepare the data
     var data = {};
@@ -154,6 +158,7 @@ $(document).ready(function () {
         row['placement'] = currentBanner.placement;
         row['placement_type'] = currentBanner.placement_type;
         row['price'] = currentBanner.price_amd + '/' + currentBanner.duration;
+        row['start'] = currentDate.getFullYear()+'-'+currentDate.getMonth()+1+'-'+currentDate.getDate();
         row['duration'] = '1';
         row['total'] = currentBanner.price_amd;
         row['total_vat'] = parseInt(currentBanner.price_amd) + parseInt(currentBanner.price_amd * 20 / 100);
@@ -180,6 +185,7 @@ $(document).ready(function () {
             { name: 'visits', type: 'number' },
             { name: 'price', type: 'string' },
             { name: 'view', type: 'number' },
+            { name: 'start', type: 'date' },
             { name: 'duration', type: 'number' },
             { name: 'total', type: 'number' },
             { name: 'total_vat', type: 'number' },
@@ -227,6 +233,7 @@ $(document).ready(function () {
                 { text: 'Visits per month', datafield: 'visits', width: 100},
                 { text: 'Price', datafield: 'price', width: 100},
                 { text: 'View forecast', datafield: 'view', width: 100, aggregates: ['sum']},
+                { text: 'Start', datafield: 'start', width: 100},
                 { text: 'Duration', datafield: 'duration', width: 100},
                 { text: 'Total', datafield: 'total', width: 100, aggregates: ['sum']},
                 { text: 'Total incl. VAT', datafield: 'total_vat', width: 100, aggregates: ['sum']},
@@ -599,7 +606,7 @@ console.log(selectedrowindex);
         <input id="deleterowbutton" type="button" value="Delete Selected Row"/>
     </div>
 </div>
-
+<br/>
 <div style="overflow-y: scroll;">
     <div style="float: left;" id="products">
     </div>

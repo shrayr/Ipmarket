@@ -14,11 +14,25 @@ $this->menu=array(
 
 <h1>Banners</h1>
 
-<?php $this->widget('zii.widgets.CListView', array(
-	'dataProvider'=>$dataProvider,
-	'itemView'=>'_view',
-    'enableSorting'=>1,
-    'sortableAttributes'=>array(
-        'site_id',
+<?php
+$columns = array(
+    array(
+        'header'=>CHtml::encode('Site'),
+        'name'=>'site.name',
+    ),array(
+        'header'=>CHtml::encode('Name'),
+        'name'=>'name',
+    ),array(
+        'header'=>CHtml::encode('Price AMD'),
+        'name'=>'price_amd',
+    ),array(
+        'header'=>CHtml::encode('Price RU'),
+        'name'=>'price_rur',
     ),
+);
+
+$this->widget('zii.widgets.grid.CGridView', array(
+	'dataProvider'=>$dataProvider,
+    'columns'=>$columns,
+
 )); ?>

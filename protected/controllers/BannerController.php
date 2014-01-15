@@ -125,9 +125,18 @@ class BannerController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Banner');
+		$dataProvider=new CActiveDataProvider('Banner',
+            array(
+                'criteria'=>array(
+                    'with'=>array('site'=>array('joinType'=>'LEFT JOIN')),
+                    'order'=>'site_id ASC',
+                )
+            )
+);
+        $model = new Banner();
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
+			'model'=>$model,
 		));
 	}
 
