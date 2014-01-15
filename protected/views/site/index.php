@@ -1,4 +1,4 @@
-<h2 style="text-align: center">Ip Marketing</h2>
+<h2 style="text-align: center">IP Marketing</h2>
 <?php
 $baseUrl = Yii::app()->baseUrl;
 $cs = Yii::app()->getClientScript();
