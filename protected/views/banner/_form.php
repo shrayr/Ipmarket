@@ -64,6 +64,12 @@
 		<?php echo $form->error($model,'ctr'); ?>
 	</div>
 
+    <div class="row">
+		<?php echo $form->labelEx($model,'cost_price'); ?>
+		<?php echo $form->textField($model,'cost_price'); ?>
+		<?php echo $form->error($model,'cost_price'); ?>
+	</div>
+
 	<div class="row">
 		<?php echo $form->labelEx($model,'duration'); ?>
 		<?php echo $form->dropDownList($model,'duration',array('month'=>'By month','view'=>'By View')); ?>

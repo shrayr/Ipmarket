@@ -10,6 +10,8 @@
  * @property string $type
  * @property string $visits
  * @property string $circle_link
+ * @property string $cost_price_type
+ * @property integer $cost_price_value
  *
  * The followings are the available model relations:
  * @property Banner[] $banners
@@ -32,10 +34,12 @@ class Sites extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, url, type, visits, circle_link', 'length', 'max'=>255),
+			array('cost_price_value', 'required'),
+			array('cost_price_value', 'numerical', 'integerOnly'=>true),
+			array('name, url, type, visits, circle_link, cost_price_type', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, url, type, visits, circle_link', 'safe', 'on'=>'search'),
+			array('id, name, url, type, visits, circle_link, cost_price_type, cost_price_value', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,6 +67,8 @@ class Sites extends CActiveRecord
 			'type' => 'Type',
 			'visits' => 'Visits',
 			'circle_link' => 'Circle Link',
+			'cost_price_type' => 'Cost Price Type',
+			'cost_price_value' => 'Cost Price Value',
 		);
 	}
 
@@ -90,6 +96,8 @@ class Sites extends CActiveRecord
 		$criteria->compare('type',$this->type,true);
 		$criteria->compare('visits',$this->visits,true);
 		$criteria->compare('circle_link',$this->circle_link,true);
+		$criteria->compare('cost_price_type',$this->cost_price_type,true);
+		$criteria->compare('cost_price_value',$this->cost_price_value);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

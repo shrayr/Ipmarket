@@ -41,6 +41,16 @@
 		<?php echo $form->textField($model,'circle_link',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->label($model,'cost_price_type'); ?>
+		<?php echo $form->textField($model,'cost_price_type',array('size'=>60,'maxlength'=>255)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'cost_price_value'); ?>
+		<?php echo $form->textField($model,'cost_price_value'); ?>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>
 	</div>

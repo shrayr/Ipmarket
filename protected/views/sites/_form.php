@@ -49,6 +49,18 @@
 		<?php echo $form->error($model,'circle_link'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->labelEx($model,'cost_price_type'); ?>
+		<?php echo $form->dropDownList($model,'cost_price_type',array('sell'=>'Sell %','price'=>'Price %','fixed'=>'Fixed price')); ?>
+		<?php echo $form->error($model,'cost_price_type'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'cost_price_value'); ?>
+		<?php echo $form->textField($model,'cost_price_value'); ?>
+		<?php echo $form->error($model,'cost_price_value'); ?>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>

@@ -27,5 +27,7 @@ $this->menu=array(
 		'type',
 		'visits',
 		'circle_link',
+		'cost_price_type',
+		'cost_price_value',
 	),
 )); ?>

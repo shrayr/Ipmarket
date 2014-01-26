@@ -14,9 +14,11 @@
  * @property double $price_rur
  * @property string $duration
  * @property string $placement
+ * @property string $placement_type
  * @property string $type
  * @property string $price_type
  * @property double $ctr
+ * @property integer $cost_price
  *
  * The followings are the available model relations:
  * @property Sites $site
@@ -39,13 +41,13 @@ class Banner extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('site_id', 'numerical', 'integerOnly'=>true),
+			array('site_id, cost_price', 'numerical', 'integerOnly'=>true),
 			array('price_amd, price_us, price_rur, ctr', 'numerical'),
 			array('name, photo', 'length', 'max'=>255),
-			array('size, duration, placement, type, price_type', 'length', 'max'=>45),
+			array('size, duration, placement, placement_type, type, price_type', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, site_id, name, size, photo, price_amd, price_us, price_rur, duration, placement, type, price_type, ctr', 'safe', 'on'=>'search'),
+			array('id, site_id, name, size, photo, price_amd, price_us, price_rur, duration, placement, placement_type, type, price_type, ctr, cost_price', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -77,9 +79,11 @@ class Banner extends CActiveRecord
 			'price_rur' => 'Price Rur',
 			'duration' => 'Duration',
 			'placement' => 'Placement',
-			'type' => 'Media type',
+			'placement_type' => 'Placement Type',
+			'type' => 'Type',
 			'price_type' => 'Price Type',
 			'ctr' => 'Ctr',
+			'cost_price' => 'Cost Price',
 		);
 	}
 
@@ -111,9 +115,11 @@ class Banner extends CActiveRecord
 		$criteria->compare('price_rur',$this->price_rur);
 		$criteria->compare('duration',$this->duration,true);
 		$criteria->compare('placement',$this->placement,true);
+		$criteria->compare('placement_type',$this->placement_type,true);
 		$criteria->compare('type',$this->type,true);
 		$criteria->compare('price_type',$this->price_type,true);
 		$criteria->compare('ctr',$this->ctr);
+		$criteria->compare('cost_price',$this->cost_price);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

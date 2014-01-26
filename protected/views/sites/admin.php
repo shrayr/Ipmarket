@@ -51,6 +51,10 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'type',
 		'visits',
 		'circle_link',
+		/*
+		'cost_price_type',
+		'cost_price_value',
+		*/
 		array(
 			'class'=>'CButtonColumn',
 		),

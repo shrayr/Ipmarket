@@ -20,6 +20,8 @@ $cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxgrid.js');
 $cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxgrid.sort.js');
 $cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxgrid.pager.js');
 $cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxgrid.edit.js');
+$cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxdata.export.js');
+$cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxgrid.export.js');
 $cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxgrid.selection.js');
 $cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxgrid.aggregates.js');
 $cs->registerScriptFile($baseUrl . '/js/gettheme.js');
@@ -345,6 +347,10 @@ console.log(selectedrowindex);
     $("#deleterowbutton").jqxButton({ theme: theme });
     $("#addnewproduct").jqxButton({ theme: theme });
     $("#deletenewproduct").jqxButton({ theme: theme });
+    $("#importFromCsv").jqxButton({ theme: theme });
+    $("#pngButton").jqxButton({ theme: theme });
+    $("#htmlExport").jqxButton({ theme: theme });
+    $("#print").jqxButton({ theme: theme });
     // update row.
     $("#updaterowbutton").on('click', function () {
         var datarow = generaterow();
@@ -502,7 +508,14 @@ console.log(selectedrowindex);
         // setup the chart
         $('#cpmChart').jqxChart(settings);
 
-
+        // export grid, charts
+        $("#htmlExport").click(function () {
+            $("#jqxgrid").jqxGrid('exportdata', 'csv', 'jqxGrid');
+        });
+        $("#pngButton").click(function () {
+            // call the export server to create a PNG image
+            $('#clicksChart').jqxChart('saveAsPNG', 'myChart.png');
+        });
         /* create CPC chart */
         var rows = $('#jqxgrid').jqxGrid('getrows', 'view');
         var result = {};
@@ -514,6 +527,32 @@ console.log(selectedrowindex);
             data[i] = result;
             result = {};
         }
+
+
+        $("#print").click(function () {
+            var gridContent = $("#jqxgrid").jqxGrid('exportdata', 'html');
+            var productsContent = $("#products").jqxGrid('exportdata', 'html');
+            var clicksChart = $('#clicksChart')[0].outerHTML;
+            var viewsChart = $('#viewsChart')[0].outerHTML;
+            var cpmChart = $('#cpmChart')[0].outerHTML;
+            var cpcChart = $('#cpcChart')[0].outerHTML;
+            var overallPrint = window.document.getElementById('overallPrint').innerHTML;
+            var newWindow = window.open('', '', 'width=800, height=500'),
+                document = newWindow.document.open(),
+                pageContent =
+                    '<!DOCTYPE html>\n' +
+                        '<html>\n' +
+                        '<head>\n' +
+                        '<meta charset="utf-8" />\n' +
+                        '<title>jQWidgets Grid</title>\n' +
+                        '</head>\n' +
+                        '<body>\n' + overallPrint+'\n'+gridContent + productsContent+clicksChart+viewsChart+cpmChart+cpcChart+'\n</body>\n</html>';
+            document.write(pageContent);
+            document.close();
+            newWindow.print();
+        });
+
+
 
         var dataAdapter7 = new $.jqx.dataAdapter(data, { async: false, autoBind: true });
         var settings = {
@@ -574,7 +613,7 @@ console.log(selectedrowindex);
     });
 });
 </script>
-<div>
+<div id="overallPrint">
     <p><strong>Campaign overall statistics:</strong></p>
     <p>Campaign overall budjet (without VAT):	<span id="overallBudget"></span></p>
     <p>Campaign overall budjet including agency fee (without VAT):	<span id="overallBudgetAgency"></span></p>
@@ -606,6 +645,15 @@ console.log(selectedrowindex);
     <div class="form-group">
         <input id="deleterowbutton" type="button" value="Delete Selected Row"/>
     </div>
+    <div class="form-group">
+        <input type="button" value="Export to CSV" id='htmlExport' />
+    </div>
+    <div class="form-group">
+        <input id="importFromCsv" type="button" value="Import from CSV"/>
+    </div>
+    <div class="form-group">
+        <input type="button" value="Print" id='print' />
+    </div>
 </div>
 <br/>
 <div style="overflow-y: scroll;">
@@ -624,6 +672,9 @@ console.log(selectedrowindex);
     </div>
     <div class="form-group">
         <input id="deletenewproduct" type="button" value="Delete Selected Product"/>
+    </div>
+    <div class="form-group">
+        <input type="button" value="Export Clicks Chart" id='pngButton' />
     </div>
 </div>
 <div id="charts">

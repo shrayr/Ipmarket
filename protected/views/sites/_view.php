@@ -29,5 +29,15 @@
 	<?php echo CHtml::encode($data->circle_link); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('cost_price_type')); ?>:</b>
+	<?php echo CHtml::encode($data->cost_price_type); ?>
+	<br />
+
+	<?php /*
+	<b><?php echo CHtml::encode($data->getAttributeLabel('cost_price_value')); ?>:</b>
+	<?php echo CHtml::encode($data->cost_price_value); ?>
+	<br />
+
+	*/ ?>
 
 </div>
