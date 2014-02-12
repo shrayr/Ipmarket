@@ -46,11 +46,16 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'site_id',
+        array(
+            'header'=>CHtml::encode('Site'),
+            'name'=>'site.name',
+            'htmlOptions'=>array('width'=>'100px'),
+        ),
 		'name',
 		'size',
 		'photo',
 		'price_amd',
+		'pageview',
 		/*
 		'price_us',
 		'price_rur',
