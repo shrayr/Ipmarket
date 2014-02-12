@@ -42,7 +42,7 @@ class Banner extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('site_id, cost_price', 'numerical', 'integerOnly'=>true),
-			array('price_amd, price_us, price_rur, ctr', 'numerical'),
+			array('price_amd, price_us, price_rur, ctr, pageview', 'numerical'),
 			array('name, photo', 'length', 'max'=>255),
 			array('size, duration, placement, placement_type, type, price_type', 'length', 'max'=>45),
 			// The following rule is used by search().
@@ -84,6 +84,7 @@ class Banner extends CActiveRecord
 			'price_type' => 'Price Type',
 			'ctr' => 'Ctr',
 			'cost_price' => 'Cost Price',
+            'pageview' => 'Page view'
 		);
 	}
 
@@ -120,6 +121,7 @@ class Banner extends CActiveRecord
 		$criteria->compare('price_type',$this->price_type,true);
 		$criteria->compare('ctr',$this->ctr);
 		$criteria->compare('cost_price',$this->cost_price);
+		$criteria->compare('pageview',$this->pageview);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

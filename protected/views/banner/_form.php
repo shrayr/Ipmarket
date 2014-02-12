@@ -70,6 +70,12 @@
 		<?php echo $form->error($model,'cost_price'); ?>
 	</div>
 
+    <div class="row">
+        <?php echo $form->labelEx($model,'pageview'); ?>
+        <?php echo $form->textField($model,'pageview'); ?>
+        <?php echo $form->error($model,'pageview'); ?>
+    </div>
+
 	<div class="row">
 		<?php echo $form->labelEx($model,'duration'); ?>
 		<?php echo $form->dropDownList($model,'duration',array('month'=>'By month','view'=>'By View')); ?>

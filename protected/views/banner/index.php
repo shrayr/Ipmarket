@@ -29,6 +29,10 @@ $columns = array(
         'header'=>CHtml::encode('Price RU'),
         'name'=>'price_rur',
     ),
+    array(
+        'header'=>CHtml::encode('Page view'),
+        'name'=>'pageview',
+    ),
 );
 
 $this->widget('zii.widgets.grid.CGridView', array(
