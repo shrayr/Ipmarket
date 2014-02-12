@@ -23,7 +23,9 @@ $this->menu=array(
 	'attributes'=>array(
 		'id',
 		'name',
-		'price',
+		'price_amd',
+		'price_rur',
+		'price_usd',
 		'cost_price',
 	),
 )); ?>

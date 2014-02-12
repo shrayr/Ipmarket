@@ -27,12 +27,12 @@ class Product extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, price, cost_price', 'required'),
-			array('price, cost_price', 'numerical'),
+			array('name, price_amd,price_rur,price_usd, cost_price', 'required'),
+			array('price_amd,price_rur,price_usd, cost_price', 'numerical'),
 			array('name', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, price, cost_price', 'safe', 'on'=>'search'),
+			array('id, name, price_amd,price_rur,price_usd, cost_price', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -55,7 +55,9 @@ class Product extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
-			'price' => 'Price',
+			'price_amd' => 'Price AMD',
+			'price_rur' => 'Price RUR',
+			'price_usd' => 'Price USD',
 			'cost_price' => 'Cost Price',
 		);
 	}
@@ -80,7 +82,9 @@ class Product extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('price',$this->price);
+		$criteria->compare('price_amd',$this->price_amd);
+		$criteria->compare('price_rur',$this->price_rur);
+		$criteria->compare('price_usd',$this->price_usd);
 		$criteria->compare('cost_price',$this->cost_price);
 
 		return new CActiveDataProvider($this, array(

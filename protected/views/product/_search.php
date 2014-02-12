@@ -22,9 +22,19 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'price'); ?>
-		<?php echo $form->textField($model,'price'); ?>
+		<?php echo $form->label($model,'price_amd'); ?>
+		<?php echo $form->textField($model,'price_amd'); ?>
 	</div>
+
+    <div class="row">
+        <?php echo $form->label($model,'price_rur'); ?>
+        <?php echo $form->textField($model,'price_rur'); ?>
+    </div>
+
+    <div class="row">
+        <?php echo $form->label($model,'price_usd'); ?>
+        <?php echo $form->textField($model,'price_usd'); ?>
+    </div>
 
 	<div class="row">
 		<?php echo $form->label($model,'cost_price'); ?>

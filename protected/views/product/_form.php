@@ -26,9 +26,21 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'price'); ?>
-		<?php echo $form->textField($model,'price'); ?>
-		<?php echo $form->error($model,'price'); ?>
+		<?php echo $form->labelEx($model,'price_amd'); ?>
+		<?php echo $form->textField($model,'price_amd'); ?>
+		<?php echo $form->error($model,'price_amd'); ?>
+	</div>
+
+    <div class="row">
+		<?php echo $form->labelEx($model,'price_rur'); ?>
+		<?php echo $form->textField($model,'price_rur'); ?>
+		<?php echo $form->error($model,'price_rur'); ?>
+	</div>
+
+    <div class="row">
+		<?php echo $form->labelEx($model,'price_usd'); ?>
+		<?php echo $form->textField($model,'price_usd'); ?>
+		<?php echo $form->error($model,'price_usd'); ?>
 	</div>
 
 	<div class="row">
