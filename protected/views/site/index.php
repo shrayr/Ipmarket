@@ -20,6 +20,7 @@ $cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxgrid.js');
 $cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxgrid.sort.js');
 $cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxgrid.pager.js');
 $cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxgrid.edit.js');
+$cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxnumberinput.js');
 $cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxdata.export.js');
 $cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxgrid.export.js');
 $cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxgrid.selection.js');
@@ -155,7 +156,7 @@ $(document).ready(function () {
         var currentSite = $("#allSites").jqxDropDownList('getSelectedItem').originalItem;
         var currentBanner = $("#siteBanners").jqxDropDownList('getSelectedItem').originalItem;
         row['website_type'] = currentSite.type;
-        row['website'] = currentSite.name;
+        row['website'] = currentSite.name + ',' + currentBanner.type +',' + currentBanner.placement + ',' + currentBanner.size;
         row['visits'] = currentSite.visits;
         row['ad_type'] = currentBanner.type;
         row['placement'] = currentBanner.placement;
@@ -168,7 +169,7 @@ $(document).ready(function () {
         row['view'] = parseInt(parseInt(currentSite.visits) * 80 / 100);
         row['cpm'] = row['total'] / row['view'] * 1000;
         row['ctr'] = 0.08;
-        row['clicks'] = row['view'] * row['ctr'];
+        row['clicks'] = (row['view'] * row['ctr'])/100;
         row['cpc'] = row['total'] * row['clicks'];
         return row;
     }
@@ -182,8 +183,8 @@ $(document).ready(function () {
         datafields: [
             { name: 'website_type', type: 'string' },
             { name: 'website', type: 'string' },
-            { name: 'ad_type', type: 'string' },
-            { name: 'placement', type: 'string' },
+         //   { name: 'ad_type', type: 'string' },
+       //     { name: 'placement', type: 'string' },
             { name: 'placement_type', type: 'string' },
             { name: 'visits', type: 'number' },
             { name: 'price', type: 'string' },
@@ -229,18 +230,18 @@ $(document).ready(function () {
             showaggregates: true,
             columns: [
                 { text: 'Website Type', datafield: 'website_type', width: 100},
-                { text: 'Website', datafield: 'website', width: 100},
-                { text: 'Ad Type', datafield: 'ad_type', width: 100},
-                { text: 'Placement', datafield: 'placement', width: 100},
+                { text: 'Website, ad_type , placement, size', datafield: 'website', width: 300},
+              //  { text: 'Ad Type', datafield: 'ad_type', width: 100},
+              //  { text: 'Placement', datafield: 'placement', width: 100},
                 { text: 'Placement Type', datafield: 'placement_type', width: 100},
-                { text: 'Visits per month', datafield: 'visits', width: 100},
-                { text: 'Price', datafield: 'price', width: 100},
-                { text: 'View forecast', datafield: 'view', width: 100, aggregates: ['sum']},
-                { text: 'Start', datafield: 'start', width: 100},
+                { text: 'Visits per month', datafield: 'visits', cellsformat: 'f2', width: 100},
+                { text: 'Price', datafield: 'price', cellsformat: 'f2', width: 100},
+                { text: 'View forecast', datafield: 'view', cellsformat: 'f2', width: 100, aggregates: ['sum']},
+                { text: 'Start', datafield: 'date', columntype: 'datetimeinput', width: 110, align: 'right', cellsalign: 'right'},
                 { text: 'Duration', datafield: 'duration', width: 100},
-                { text: 'Total', datafield: 'total', width: 100, aggregates: ['sum']},
-                { text: 'Total incl. VAT', datafield: 'total_vat', width: 100, aggregates: ['sum']},
-                { text: 'CPM', datafield: 'cpm', width: 125, aggregates: [
+                { text: 'Total', datafield: 'total', width: 100,  cellsformat: 'f2', aggregates: ['sum']},
+                { text: 'Total incl. VAT', datafield: 'total_vat', cellsformat: 'f2', width: 100, aggregates: ['sum']},
+                { text: 'CPM', datafield: 'cpm', width: 125, cellsformat: 'f2', aggregates: [
                     { 'Total': function (aggregatedValue, currentValue, column, record) {
                         var totalPrice = $('#jqxgrid').jqxGrid('getcolumnaggregateddata', 'total', ['sum']).sum;
                         var totalView = $('#jqxgrid').jqxGrid('getcolumnaggregateddata', 'view', ['sum']).sum;
@@ -251,8 +252,8 @@ $(document).ready(function () {
                 ]
                 }, //total/view*1000
                 { text: 'CTR', datafield: 'ctr', width: 125, aggregates: ['avg']},
-                { text: 'Clicks', datafield: 'clicks', width: 125, aggregates: ['sum']},
-                { text: 'CPC', datafield: 'cpc', width: 125, aggregates: [
+                { text: 'Clicks', datafield: 'clicks', width: 125, cellsformat: 'f2', aggregates: ['sum']},
+                { text: 'CPC', datafield: 'cpc', width: 125, cellsformat: 'f2', aggregates: [
                     { 'Total': function (aggregatedValue, currentValue, column, record) {
                         var totalPrice = $('#jqxgrid').jqxGrid('getcolumnaggregateddata', 'total', ['sum']).sum;
                         var totalView = $('#jqxgrid').jqxGrid('getcolumnaggregateddata', 'view', ['sum']).sum;

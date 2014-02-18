@@ -97,7 +97,9 @@ class BannerController extends Controller
 		if(isset($_POST['Banner']))
 		{
 			$model->attributes=$_POST['Banner'];
-			if($model->save())
+            $model->photo=CUploadedFile::getInstance($model,'photo');
+            if($model->save())
+                $model->photo->saveAs(Yii::app()->basePath.'/../images/'.$model->photo);
 				$this->redirect(array('view','id'=>$model->id));
 		}
 
@@ -127,6 +129,9 @@ class BannerController extends Controller
 	{
 		$dataProvider=new CActiveDataProvider('Banner',
             array(
+                'pagination'=>array(
+                    'pageSize'=>100000,
+                ),
                 'criteria'=>array(
                     'with'=>array('site'=>array('joinType'=>'LEFT JOIN')),
                     'order'=>'site_id ASC',
