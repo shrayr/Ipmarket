@@ -156,7 +156,8 @@ $(document).ready(function () {
         var currentSite = $("#allSites").jqxDropDownList('getSelectedItem').originalItem;
         var currentBanner = $("#siteBanners").jqxDropDownList('getSelectedItem').originalItem;
         row['website_type'] = currentSite.type;
-        row['website'] = currentSite.name + ',' + currentBanner.type +',' + currentBanner.placement + ',' + currentBanner.size;
+        row['website'] = currentSite.name;
+        row['banner'] = currentBanner.name + ',' + currentBanner.type +',' + currentBanner.placement + ',' + currentBanner.size;
         row['visits'] = currentSite.visits;
         row['ad_type'] = currentBanner.type;
         row['placement'] = currentBanner.placement;
@@ -164,13 +165,13 @@ $(document).ready(function () {
         row['price'] = currentBanner.price_amd + '/' + currentBanner.duration;
         row['start'] = currentDate.getFullYear()+'-'+currentDate.getMonth()+1+'-'+currentDate.getDate();
         row['duration'] = '1';
-        row['total'] = currentBanner.price_amd;
+        row['total'] = currentBanner.price_amd * row['duration'];
         row['total_vat'] = parseInt(currentBanner.price_amd) + parseInt(currentBanner.price_amd * 20 / 100);
         row['view'] = parseInt(parseInt(currentSite.visits) * 80 / 100);
         row['cpm'] = row['total'] / row['view'] * 1000;
         row['ctr'] = 0.08;
-        row['clicks'] = (row['view'] * row['ctr'])/100;
-        row['cpc'] = row['total'] * row['clicks'];
+        row['clicks'] = parseInt((row['view'] * row['ctr'])/100);
+        row['cpc'] = row['total'] / row['clicks'];
         return row;
     }
     var row = generaterow(0);
@@ -219,6 +220,7 @@ $(document).ready(function () {
         }
     };
     // initialize jqxGrid
+
     $("#jqxgrid").jqxGrid(
         {
             width: 1600,
@@ -230,40 +232,50 @@ $(document).ready(function () {
             showaggregates: true,
             columns: [
                 { text: 'Website Type', datafield: 'website_type', width: 100},
-                { text: 'Website, ad_type , placement, size', datafield: 'website', width: 300},
+                { text: 'Website', datafield: 'website', width: 100},
+                { text: 'Banner, ad_type , placement, size', datafield: 'banner', width: 250},
               //  { text: 'Ad Type', datafield: 'ad_type', width: 100},
               //  { text: 'Placement', datafield: 'placement', width: 100},
                 { text: 'Placement Type', datafield: 'placement_type', width: 100},
-                { text: 'Visits per month', datafield: 'visits', cellsformat: 'f2', width: 100},
-                { text: 'Price', datafield: 'price', cellsformat: 'f2', width: 100},
-                { text: 'View forecast', datafield: 'view', cellsformat: 'f2', width: 100, aggregates: ['sum']},
+                { text: 'Visits per month', datafield: 'visits', cellsformat: 'n2', width: 100},
+                { text: 'Price', datafield: 'price', cellsformat: 'n2', width: 100},
+                { text: 'View forecast', datafield: 'view', cellsformat: 'n2', width: 130, aggregates: ['sum']},
                 { text: 'Start', datafield: 'date', columntype: 'datetimeinput', width: 110, align: 'right', cellsalign: 'right'},
-                { text: 'Duration', datafield: 'duration', width: 100},
-                { text: 'Total', datafield: 'total', width: 100,  cellsformat: 'f2', aggregates: ['sum']},
-                { text: 'Total incl. VAT', datafield: 'total_vat', cellsformat: 'f2', width: 100, aggregates: ['sum']},
+                { text: 'Duration', datafield: 'duration', width: 80},
+                { text: 'Total', datafield: 'total', width: 100,  cellsformat: 'n2', aggregates: ['sum']},
+                { text: 'Total incl. VAT', datafield: 'total_vat', cellsformat: 'n2', width: 100, aggregates: ['sum']},
                 { text: 'CPM', datafield: 'cpm', width: 125, cellsformat: 'f2', aggregates: [
                     { 'Total': function (aggregatedValue, currentValue, column, record) {
                         var totalPrice = $('#jqxgrid').jqxGrid('getcolumnaggregateddata', 'total', ['sum']).sum;
                         var totalView = $('#jqxgrid').jqxGrid('getcolumnaggregateddata', 'view', ['sum']).sum;
-                        overallCPM = totalPrice / totalView * 1000;
+                        overallCPM = parseFloat(totalPrice / totalView * 1000).toFixed(2);
                         return overallCPM;
                     }
                     }
                 ]
                 }, //total/view*1000
                 { text: 'CTR', datafield: 'ctr', width: 125, aggregates: ['avg']},
-                { text: 'Clicks', datafield: 'clicks', width: 125, cellsformat: 'f2', aggregates: ['sum']},
+                { text: 'Clicks', datafield: 'clicks', width: 125, cellsformat: 'n2', aggregates: ['sum']},
                 { text: 'CPC', datafield: 'cpc', width: 125, cellsformat: 'f2', aggregates: [
                     { 'Total': function (aggregatedValue, currentValue, column, record) {
                         var totalPrice = $('#jqxgrid').jqxGrid('getcolumnaggregateddata', 'total', ['sum']).sum;
-                        var totalView = $('#jqxgrid').jqxGrid('getcolumnaggregateddata', 'view', ['sum']).sum;
-                        overallCPC = totalPrice / (totalPrice / totalView * 1000);
+                        var totalClicks = $('#jqxgrid').jqxGrid('getcolumnaggregateddata', 'clicks', ['sum']).sum;
+                        overallCPC = parseFloat(totalPrice / totalClicks).toFixed(2);
                         return overallCPC;
                     }
                     }
                 ]}
             ]
         });
+
+    $("#jqxgrid").bind('cellendedit', function (event) {
+        var args = event.args;
+        var rowIndex = args.rowindex;
+        var duration = args.value;
+        var oldtotal = $("#jqxgrid").jqxGrid('getcellvalue', rowIndex, 'total');
+        var newtotal = duration * oldtotal;
+        $("#jqxgrid").jqxGrid('setcellvalue', rowIndex, 'total', newtotal);
+    });
 
     var productAdapter = new $.jqx.dataAdapter();
 
@@ -531,6 +543,7 @@ console.log(selectedrowindex);
 
 
         $("#print").click(function () {
+            alert(1);
             var gridContent = $("#jqxgrid").jqxGrid('exportdata', 'html');
             var productsContent = $("#products").jqxGrid('exportdata', 'html');
             var clicksChart = $('#clicksChart')[0].outerHTML;

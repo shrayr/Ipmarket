@@ -19,6 +19,5 @@ $this->menu=array(
 	'itemView'=>'_view',
     'sortableAttributes'=>array(
         'name',
-        'logo',
     ),
 )); ?>
