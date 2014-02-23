@@ -70,9 +70,11 @@ class ClientController extends Controller
 		if(isset($_POST['Client']))
 		{
 			$model->attributes=$_POST['Client'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
-		}
+            $model->logo=CUploadedFile::getInstance($model,'logo');
+            if($model->save()){
+                $model->logo->saveAs(Yii::app()->basePath.'/../images/clients/'.$model->logo);
+                $this->redirect(array('view','id'=>$model->id));
+		}}
 
 		$this->render('create',array(
 			'model'=>$model,
@@ -94,9 +96,11 @@ class ClientController extends Controller
 		if(isset($_POST['Client']))
 		{
 			$model->attributes=$_POST['Client'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
-		}
+            $model->logo=CUploadedFile::getInstance($model,'logo');
+            if($model->save()){
+                $model->logo->saveAs(Yii::app()->basePath.'/../images/clients/'.$model->logo);
+                $this->redirect(array('view','id'=>$model->id));
+            }		}
 
 		$this->render('update',array(
 			'model'=>$model,
@@ -122,7 +126,11 @@ class ClientController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Client');
+		$dataProvider=new CActiveDataProvider('Client',array(
+            'sort'=>array(
+                'defaultOrder'=>'name',
+            )
+        ));
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
