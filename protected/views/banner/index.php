@@ -15,67 +15,85 @@ $this->menu = array(
 <h1>Banners</h1>
 
 <?php
-$columns = array(
-    array(
-        'header' => CHtml::encode('Site'),
-        'name' => 'site.name',
-    ), array(
-        'header' => CHtml::encode('Name'),
-        'name' => 'name',
-    ), array(
-        'header' => CHtml::encode('Price AMD'),
-        'name' => 'price_amd',
-    ), array(
-        'header' => CHtml::encode('Price RUR'),
-        'name' => 'price_rur',
-    ),
-    array(
-        'header' => CHtml::encode('Price USD'),
-        'name' => 'price_us',
-    ),
-    array(
-        'header' => CHtml::encode('Page view'),
-        'name' => 'pageview',
-    ),
-);
+$baseUrl = Yii::app()->baseUrl;
+$cs = Yii::app()->getClientScript();
+$cs->registerScriptFile($baseUrl . '/js/scripts/jquery-1.10.2.min.js');
+$cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxcore.js');
+$cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxdata.js');
+$cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxbuttons.js');
+$cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxscrollbar.js');
+$cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxdatatable.js');
+$cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxtreegrid.js');
+$cs->registerScriptFile($baseUrl . '/js/scripts/demos.js');
 
-$this->widget('zii.widgets.grid.CGridView', array(
-    'dataProvider' => $dataProvider,
-    'columns' => $columns,
-    'enableSorting' => false,
-    'htmlOptions'=>array('style'=>'cursor: pointer;'),
-    'enablePagination' => false,
-)); ?>
-
-<script>
+?>
+<link rel="stylesheet" href="../../js/jqwidgets/styles/jqx.base.css" type="text/css"/>
+<style>
+    .jqx-tree-grid-icon, .jqx-tree-grid-icon-size {
+        height: 16px;
+    }
+</style>
+<script type="text/javascript">
     $(document).ready(function () {
-        var cats = [];
-        $('#yw0 .items tbody tr').each(function () {
-            var text = $(this).find("td:first-child").text();
-            if ($.inArray(text, cats) === -1) {
-                cats.push(text);
-            } else {
-                $(this).hide()
-            }
-        });
+        var data = '<?php echo $allBanners; ?>'
+        // prepare the data
+        var source =
+        {
+            datatype: "json",
+            datafields: [
+                { name: 'site_name' },
+                { name: 'name' },
+                { name: 'size' },
+                { name: 'price_amd' },
+                { name: 'price_us' },
+                { name: 'price_rur' },
+                { name: 'duration' },
+                { name: 'placement' },
+                { name: 'placement_type' },
+                { name: 'type' },
+                { name: 'price_type' },
+                { name: 'photo' }
+            ],
+            hierarchy:
+            {
+                groupingDataFields:
+                    [
+                        {
+                            name: "site_name"
+                        }
+                    ]
+            },
+            localData: data
+
+        };
+        var dataAdapter = new $.jqx.dataAdapter(source);
+        console.log(dataAdapter);
+        // create data adapter.
+        // perform Data Binding.
+        dataAdapter.dataBind();
+        // get the tree items. The first parameter is the item's id. The second parameter is the parent item's id. The 'items' parameter represents
+        // the sub items collection name. Each jqxTree item has a 'label' property, but in the JSON data, we have a 'text' field. The last parameter
+        // specifies the mapping between the 'text' and 'label' fields.
+        $("#treeGrid").jqxTreeGrid(
+            {
+                width: 680,
+                source: dataAdapter,
+                pageable: true,
+                columnsResize: true,
+                altRows: true,
+                ready: function () {
+                    $("#treeGrid").jqxTreeGrid('expandRow', "0");
+                },
+                columns: [
+                    { text: 'Site name', dataField: 'site_name', width: 150 },
+                    { text: 'Banner name', dataField: 'name', width: 120 },
+                    { text: 'Type', dataField: 'type', width: 160 },
+                    { text: 'Photo', dataField: 'photo', cellsFormat: 'd', width: 120 },
+                    { text: 'Hire Date', dataField: 'duration', cellsFormat: 'd', width: 120 }
+                ]
+            });
     });
-
-    $('tr').click(function () {
-        $(this).addClass('selected');
-        var current = $(this).find("td:first-child").text();
-        $('#yw0 .items tbody tr').each(function (index) {
-            var text = $(this).find("td:first-child").text();
-            if (text == current) {
-                if (this.style.display == 'none') {
-                    $(this).show();
-                } else if ($(this).attr('class')!=='odd selected' && $(this).attr('class')!=='even selected'){
-                    $(this).hide();
-                }
-            }
-        });
-    });
-
-
 </script>
 
-
+<div id='treeGrid'>
+</div>

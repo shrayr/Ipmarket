@@ -127,21 +127,23 @@ class BannerController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Banner',
+		$dataProvider = new CActiveDataProvider('Banner',
             array(
-                'pagination'=>array(
-                    'pageSize'=>100000,
-                ),
                 'criteria'=>array(
                     'with'=>array('site'=>array('joinType'=>'LEFT JOIN')),
                     'order'=>'site_id ASC',
                 )
             )
 );
+        $query="SELECT banner.id,banner.name, banner.size, banner.price_amd, banner.price_rur, banner.price_us, banner.duration,banner.placement, banner.placement_type, banner.type, banner.price_type,banner.photo,sites.name AS site_name FROM banner LEFT JOIN sites ON banner.site_id=sites.id";
+        $allBanners = CJSON::encode(Yii::app()->db->createCommand($query)->queryAll());
+
         $model = new Banner();
+
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 			'model'=>$model,
+            'allBanners'=>$allBanners,
 		));
 	}
 
