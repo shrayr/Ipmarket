@@ -89,7 +89,7 @@ $cs->registerScriptFile($baseUrl . '/js/scripts/demos.js');
                     { text: 'Banner name', dataField: 'name', width: 120 },
                     { text: 'Type', dataField: 'type', width: 160 },
                     { text: 'Photo', dataField: 'photo', cellsFormat: 'd', width: 120 },
-                    { text: 'Hire Date', dataField: 'duration', cellsFormat: 'd', width: 120 }
+                    { text: 'Duration', dataField: 'duration', cellsFormat: 'd', width: 120 }
                 ]
             });
     });
