@@ -46,11 +46,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-        array(
-            'header'=>CHtml::encode('Site'),
-            'name'=>'site.name',
-            'htmlOptions'=>array('width'=>'100px'),
-        ),
+        array( 'name'=>'site_name', 'value'=>'$data["site"]["name"]',),
 		'name',
 		'size',
 		'photo',

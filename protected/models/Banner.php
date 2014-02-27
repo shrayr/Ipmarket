@@ -25,7 +25,8 @@
  */
 class Banner extends CActiveRecord
 {
-	/**
+    public $site_name;
+    /**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
@@ -41,13 +42,13 @@ class Banner extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('site_id, cost_price', 'numerical', 'integerOnly'=>true),
+			array('cost_price', 'numerical', 'integerOnly'=>true),
 			array('price_amd, price_us, price_rur, ctr, pageview', 'numerical'),
 			array('name, photo', 'length', 'max'=>255),
 			array('size, duration, placement, placement_type, type, price_type', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, site_id, name, size, photo, price_amd, price_us, price_rur, duration, placement, placement_type, type, price_type, ctr, cost_price', 'safe', 'on'=>'search'),
+			array('id, site_name, name, size, photo, price_amd, price_us, price_rur, duration, placement, placement_type, type, price_type, ctr, cost_price', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -70,7 +71,7 @@ class Banner extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'site_id' => 'Site',
+			'site.name' => 'Site',
 			'name' => 'Name',
 			'size' => 'Size',
 			'photo' => 'Photo',
@@ -105,9 +106,9 @@ class Banner extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
-
+        $criteria->with = 'site';
 		$criteria->compare('id',$this->id);
-		$criteria->compare('site_id',$this->site_id);
+		$criteria->compare('site.name',$this->site_name,true);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('size',$this->size,true);
 		$criteria->compare('photo',$this->photo,true);
@@ -123,8 +124,16 @@ class Banner extends CActiveRecord
 		$criteria->compare('cost_price',$this->cost_price);
 		$criteria->compare('pageview',$this->pageview);
 
+
+
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+            'sort'=>array(
+                'attributes'=>array(
+                    'site_name'=>array('asc'=>'site.name', 'desc'=>'site.name DESC'),
+                    '*',
+                ),
+            ),
 		));
 	}
 
