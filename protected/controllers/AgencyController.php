@@ -32,7 +32,7 @@ class AgencyController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','GetAgency'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -142,6 +142,14 @@ class AgencyController extends Controller
 			'model'=>$model,
 		));
 	}
+
+    public function actionGetAgency()
+    {
+        header('Content-Type: application/json; charset="UTF-8"');
+        $model= new Agency();
+
+        echo CJSON::encode($model->findAll());
+    }
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.

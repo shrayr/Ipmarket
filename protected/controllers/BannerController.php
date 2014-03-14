@@ -72,7 +72,7 @@ class BannerController extends Controller
 			$model->attributes=$_POST['Banner'];
             $model->photo=CUploadedFile::getInstance($model,'photo');
 			if($model->save()){
-                $model->photo->saveAs(Yii::app()->basePath.'/../images/'.$model->photo);
+                $model->photo->saveAs(Yii::app()->basePath.'/../images/banners/'.$model->photo);
                 $this->redirect(array('view','id'=>$model->id));
             }
 		}
@@ -99,12 +99,17 @@ class BannerController extends Controller
 			$model->attributes=$_POST['Banner'];
             $model->photo=CUploadedFile::getInstance($model,'photo');
             if($model->save())
-                $model->photo->saveAs(Yii::app()->basePath.'/../images/'.$model->photo);
+                $model->photo->saveAs(Yii::app()->basePath.'/../images/banners/'.$model->photo);
 				$this->redirect(array('view','id'=>$model->id));
 		}
 
+        $sitemodel = new Sites();
+        $sitename=$sitemodel->findByPk($model->site_id)->name;
+
+
 		$this->render('update',array(
 			'model'=>$model,
+            'sitename'=>$sitename,
 		));
 	}
 
@@ -135,7 +140,7 @@ class BannerController extends Controller
                 )
             )
 );
-        $query="SELECT banner.id,banner.name, banner.size, banner.price_amd, banner.price_rur, banner.price_us, banner.duration,banner.placement, banner.placement_type, banner.type, banner.price_type,banner.photo,sites.name AS site_name FROM banner LEFT JOIN sites ON banner.site_id=sites.id";
+        $query="SELECT banner.id,banner.name, banner.size, banner.price_amd, banner.price_rur, banner.price_us, banner.duration,banner.placement,banner.pageview, banner.placement_type, banner.type, banner.price_type,banner.photo,sites.name AS site_name FROM banner LEFT JOIN sites ON banner.site_id=sites.id";
         $allBanners = CJSON::encode(Yii::app()->db->createCommand($query)->queryAll());
 
         $model = new Banner();

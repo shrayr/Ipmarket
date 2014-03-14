@@ -15,6 +15,7 @@ $cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxscrollbar.js');
 $cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxmenu.js');
 $cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxcheckbox.js');
 $cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxlistbox.js');
+$cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxradiobutton.js');
 $cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxdropdownlist.js');
 $cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxgrid.js');
 $cs->registerScriptFile($baseUrl . '/js/jqwidgets/jqxgrid.sort.js');
@@ -45,7 +46,74 @@ $(document).ready(function () {
     /*
      * get sites from db
      * */
-    var sitesSource =
+
+//////////// Global variables ///////////////////////
+
+    $("#StartDate").jqxDateTimeInput({width: '200px', height: '25px'});
+    var defaultDate = $('#StartDate').jqxDateTimeInput('value');
+    $('#StartDate').on('valuechanged', function (event)
+    {
+        defaultDate = event.args.date;
+
+        var rowscount = $("#jqxgrid").jqxGrid('getdatainformation').rowscount;
+        for (var i = 0; i < rowscount; i++)
+        {
+            $("#jqxgrid").jqxGrid('setcellvalue', i, 'start', defaultDate);
+        }
+    });
+
+
+    var source =
+    {
+        datatype: "json",
+        datafields: [
+            { name: 'name' }
+        ],
+        url: 'index.php?r=client/GetClients',
+        async: false
+    };
+    var dataAdapter = new $.jqx.dataAdapter(source);
+    // Create a jqxDropDownList
+    $("#ClientList").jqxDropDownList({
+        selectedIndex: null, source: dataAdapter, displayMember: "name", width: 200, height: 25
+    });
+
+    var source =
+    {
+        datatype: "json",
+        datafields: [
+            { name: 'name' }
+        ],
+        url: 'index.php?r=agency/GetAgency',
+        async: false
+    };
+    var dataAdapter = new $.jqx.dataAdapter(source);
+    console.log(dataAdapter);
+    // Create a jqxDropDownList
+    $("#AgencyList").jqxDropDownList({
+        selectedIndex: null, source: dataAdapter, displayMember: "name", width: 200, height: 25
+    });
+
+    $("#VATjqxRadioButton1").jqxRadioButton({ groupName: '1', width: 200, height: 25, checked: true});
+    $("#VATjqxRadioButton2").jqxRadioButton({ groupName: '1', width: 200, height: 25 });
+
+    var currency = ['AMD','RUR','USD'];
+    var source =
+    {
+        localdata: currency,
+        datatype: "array"
+    };
+    var dataAdapter = new $.jqx.dataAdapter(source);
+    $('#currency').jqxDropDownList({ selectedIndex: 0,  source: dataAdapter, displayMember: "", valueMember: "notes", itemHeight: 70, height: 25, width: 270
+    });
+
+
+    ///////////////////////// END GLOBAL var ///////////
+
+
+
+
+     var sitesSource =
     {
         datatype: "json",
         datafields: [
@@ -104,7 +172,8 @@ $(document).ready(function () {
             { name: 'placement_type' },
             { name: 'type' },
             { name: 'price_type' },
-            { name: 'photo' }
+            { name: 'photo' },
+            { name: 'pageview' }
         ],
         url: 'index.php?r=site/GetBanners&id=' + currentSiteId.value,
         async: false
@@ -136,7 +205,8 @@ $(document).ready(function () {
                     { name: 'type' },
                     { name: 'price_type' },
                     { name: 'photo' },
-                    { name: 'ctr' }
+                    { name: 'ctr' },
+                    { name: 'pageview' }
                 ],
                 url: 'index.php?r=site/GetBanners&id=' + args.item.value,
                 async: false
@@ -155,22 +225,24 @@ $(document).ready(function () {
         var row = {};
         var currentSite = $("#allSites").jqxDropDownList('getSelectedItem').originalItem;
         var currentBanner = $("#siteBanners").jqxDropDownList('getSelectedItem').originalItem;
+        console.log(currentBanner);
         row['website_type'] = currentSite.type;
         row['website'] = currentSite.name;
-        row['banner'] = currentBanner.name + ',' + currentBanner.type +',' + currentBanner.placement + ',' + currentBanner.size;
+        row['banner'] = currentBanner.name + ', ' + currentBanner.type +', ' + currentBanner.placement + ', ' + currentBanner.size;
         row['visits'] = currentSite.visits;
         row['ad_type'] = currentBanner.type;
         row['placement'] = currentBanner.placement;
         row['placement_type'] = currentBanner.placement_type;
-        row['price'] = currentBanner.price_amd + '/' + currentBanner.duration;
-        row['start'] = currentDate.getFullYear()+'-'+currentDate.getMonth()+1+'-'+currentDate.getDate();
+        row['price'] = currentBanner.price_amd;   // + '/' + currentBanner.duration;
+        row['start'] = defaultDate;
         row['duration'] = '1';
-        row['total'] = currentBanner.price_amd * row['duration'];
-        row['total_vat'] = parseInt(currentBanner.price_amd) + parseInt(currentBanner.price_amd * 20 / 100);
-        row['view'] = parseInt(parseInt(currentSite.visits) * 80 / 100);
-        row['cpm'] = row['total'] / row['view'] * 1000;
+        row['discount'] = 0;
+        row['total'] = (row['price']-(row['price']*row['discount']/100)) * row['duration'];
+        row['total_vat'] = parseInt(row['total']*1.2);
+        row['view'] = currentBanner.pageview;
+        row['cpm'] = (row['total'] / row['view']) * 1000;
         row['ctr'] = 0.08;
-        row['clicks'] = parseInt((row['view'] * row['ctr'])/100);
+        row['clicks'] = parseInt((row['view'] * row['ctr']));
         row['cpc'] = row['total'] / row['clicks'];
         return row;
     }
@@ -190,8 +262,9 @@ $(document).ready(function () {
             { name: 'visits', type: 'number' },
             { name: 'price', type: 'string' },
             { name: 'view', type: 'number' },
-            { name: 'start', type: 'date' },
+            { name: 'start', type: 'date'},
             { name: 'duration', type: 'number' },
+            { name: 'discount', type: 'number' },
             { name: 'total', type: 'number' },
             { name: 'total_vat', type: 'number' },
             { name: 'cpm', type: 'number' },
@@ -231,20 +304,21 @@ $(document).ready(function () {
             theme: theme,
             showaggregates: true,
             columns: [
-                { text: 'Website Type', datafield: 'website_type', width: 100},
-                { text: 'Website', datafield: 'website', width: 100},
-                { text: 'Banner, ad_type , placement, size', datafield: 'banner', width: 250},
+                { text: 'Website Type', datafield: 'website_type', width: 100, editable:false},
+                { text: 'Website', datafield: 'website', width: 100, editable:false},
+                { text: 'Banner, Ad type, Placement, Size', datafield: 'banner', width: 250},
               //  { text: 'Ad Type', datafield: 'ad_type', width: 100},
               //  { text: 'Placement', datafield: 'placement', width: 100},
                 { text: 'Placement Type', datafield: 'placement_type', width: 100},
                 { text: 'Visits per month', datafield: 'visits', cellsformat: 'n2', width: 100},
                 { text: 'Price', datafield: 'price', cellsformat: 'n2', width: 100},
                 { text: 'View forecast', datafield: 'view', cellsformat: 'n2', width: 130, aggregates: ['sum']},
-                { text: 'Start', datafield: 'date', columntype: 'datetimeinput', width: 110, align: 'right', cellsalign: 'right'},
-                { text: 'Duration', datafield: 'duration', width: 80},
-                { text: 'Total', datafield: 'total', width: 100,  cellsformat: 'n2', aggregates: ['sum']},
-                { text: 'Total incl. VAT', datafield: 'total_vat', cellsformat: 'n2', width: 100, aggregates: ['sum']},
-                { text: 'CPM', datafield: 'cpm', width: 125, cellsformat: 'f2', aggregates: [
+                { text: 'Start', datafield: 'start', columntype: 'datetimeinput', editable: true, filterable: false, width: 110, align: 'right', cellsalign: 'right', cellsformat: 'dd/MM/yyyy'},
+                { text: 'Duration', datafield: 'duration', width: 80, cellsformat: 'n2' },
+                { text: 'Discount', datafield: 'discount', width: 80, cellsformat: 'n2' },
+                { text: 'Total', datafield: 'total', width: 100,  cellsformat: 'n2', aggregates: ['sum'], editable:false},
+                { text: 'Total incl. VAT', datafield: 'total_vat', cellsformat: 'n2', width: 100, aggregates: ['sum'], editable:false},
+                { text: 'CPM', datafield: 'cpm', width: 125, editable:false, cellsformat: 'f2', aggregates: [
                     { 'Total': function (aggregatedValue, currentValue, column, record) {
                         var totalPrice = $('#jqxgrid').jqxGrid('getcolumnaggregateddata', 'total', ['sum']).sum;
                         var totalView = $('#jqxgrid').jqxGrid('getcolumnaggregateddata', 'view', ['sum']).sum;
@@ -253,10 +327,11 @@ $(document).ready(function () {
                     }
                     }
                 ]
+
                 }, //total/view*1000
                 { text: 'CTR', datafield: 'ctr', width: 125, aggregates: ['avg']},
-                { text: 'Clicks', datafield: 'clicks', width: 125, cellsformat: 'n2', aggregates: ['sum']},
-                { text: 'CPC', datafield: 'cpc', width: 125, cellsformat: 'f2', aggregates: [
+                { text: 'Clicks', datafield: 'clicks', width: 125, cellsformat: 'n2', editable:false, aggregates: ['sum']},
+                { text: 'CPC', datafield: 'cpc', width: 125, cellsformat: 'f2', editable:false, aggregates: [
                     { 'Total': function (aggregatedValue, currentValue, column, record) {
                         var totalPrice = $('#jqxgrid').jqxGrid('getcolumnaggregateddata', 'total', ['sum']).sum;
                         var totalClicks = $('#jqxgrid').jqxGrid('getcolumnaggregateddata', 'clicks', ['sum']).sum;
@@ -268,14 +343,78 @@ $(document).ready(function () {
             ]
         });
 
+
+
     $("#jqxgrid").bind('cellendedit', function (event) {
         var args = event.args;
         var rowIndex = args.rowindex;
-        var duration = args.value;
-        var oldtotal = $("#jqxgrid").jqxGrid('getcellvalue', rowIndex, 'total');
-        var newtotal = duration * oldtotal;
-        $("#jqxgrid").jqxGrid('setcellvalue', rowIndex, 'total', newtotal);
+
+        $("#jqxgrid").jqxGrid('setcellvalue', rowIndex, args.datafield, args.value);
+
+        var discount = $("#jqxgrid").jqxGrid('getcellvalue', rowIndex, 'discount');
+        var view = $("#jqxgrid").jqxGrid('getcellvalue', rowIndex, 'view');
+        var price = $("#jqxgrid").jqxGrid('getcellvalue', rowIndex, 'price');
+        var duration = $("#jqxgrid").jqxGrid('getcellvalue', rowIndex, 'duration');
+        var ctr = $("#jqxgrid").jqxGrid('getcellvalue', rowIndex, 'ctr');
+        var clicks = $("#jqxgrid").jqxGrid('getcellvalue', rowIndex, 'clicks');
+
+        var total = duration*(price- discount*price/100);
+
+        $("#jqxgrid").jqxGrid('setcellvalue', rowIndex, 'total', total);
+        $("#jqxgrid").jqxGrid('setcellvalue', rowIndex, 'total_vat', total*1.2);
+        $("#jqxgrid").jqxGrid('setcellvalue', rowIndex, 'cpm', (total/view)*1000);
+        $("#jqxgrid").jqxGrid('setcellvalue', rowIndex, 'clicks', view*ctr);
+        $("#jqxgrid").jqxGrid('setcellvalue', rowIndex, 'cpc', total/clicks);
+
+        generatecharts();
+        overalls();
+
     });
+
+
+    /////////////////////////////////// EKAMUT  /////////////////////////////////////////
+
+    $("#ekamut").jqxGrid(
+        {
+            width: 800,
+            showstatusbar: true,
+            statusbarheight: 50,
+            autoheight: true,
+            editable: true,
+            theme: theme,
+            showaggregates: true,
+            columns: [
+                { text: 'Website Type', datafield: 'website_type', width: 140, editable:false},
+                { text: 'Website', datafield: 'website', width: 140, editable:false},
+
+                { text: 'Total', datafield: 'total', width: 140,  cellsformat: 'n2', aggregates: ['sum'], editable:false},
+                { text: 'Total incl. VAT', datafield: 'total_vat', cellsformat: 'n2', width: 100, aggregates: ['sum'], editable:false},
+                { text: 'CPM', datafield: 'cpm', width: 140, editable:false, cellsformat: 'f2', aggregates: [
+                    { 'Total': function (aggregatedValue, currentValue, column, record) {
+                        var totalPrice = $('#jqxgrid').jqxGrid('getcolumnaggregateddata', 'total', ['sum']).sum;
+                        var totalView = $('#jqxgrid').jqxGrid('getcolumnaggregateddata', 'view', ['sum']).sum;
+                        overallCPM = parseFloat(totalPrice / totalView * 1000).toFixed(2);
+                        return overallCPM;
+                    }
+                    }
+                ]
+
+                }, //total/view*1000
+
+                { text: 'CPC', datafield: 'cpc', width: 140, cellsformat: 'f2', editable:false, aggregates: [
+                    { 'Total': function (aggregatedValue, currentValue, column, record) {
+                        var totalPrice = $('#jqxgrid').jqxGrid('getcolumnaggregateddata', 'total', ['sum']).sum;
+                        var totalClicks = $('#jqxgrid').jqxGrid('getcolumnaggregateddata', 'clicks', ['sum']).sum;
+                        overallCPC = parseFloat(totalPrice / totalClicks).toFixed(2);
+                        return overallCPC;
+                    }
+                    }
+                ]}
+            ]
+        });
+
+    //////////////////////////////////////////////////////////////////////////////////////
+
 
     var productAdapter = new $.jqx.dataAdapter();
 
@@ -299,7 +438,7 @@ $(document).ready(function () {
             { name: 'id', type: 'number' },
             { name: 'name', type: 'string' },
             { name: 'price', type: 'string' },
-            { name: 'cost_price', type: 'string' },
+            { name: 'cost_price', type: 'string' }
         ],
         addrow: function (rowid, rowdata, position, commit) {
             // synchronize with the server - send insert command
@@ -334,7 +473,7 @@ $(document).ready(function () {
             columns: [
                 { text: 'Name', datafield: 'name'},
                 { text: 'Price', datafield: 'price',aggregates:['sum']},
-                { text: 'Cost price', datafield: 'cost_price',aggregates:['sum']},
+                { text: 'Cost price', datafield: 'cost_price',aggregates:['sum']}
             ]
         });
 
@@ -346,7 +485,6 @@ $(document).ready(function () {
     // Delete selected product
     $("#deletenewproduct").on('click', function () {
         var selectedrowindex = $("#products").jqxGrid('getselectedrowindex');
-console.log(selectedrowindex);
         var rowscount = $("#products").jqxGrid('getdatainformation').rowscount;
         if (selectedrowindex >= 0 && selectedrowindex < rowscount) {
             var id = $("#products").jqxGrid('getrowid', selectedrowindex);
@@ -379,7 +517,39 @@ console.log(selectedrowindex);
     $("#addrowbutton").on('click', function () {
         var datarow = generaterow();
         var commit = $("#jqxgrid").jqxGrid('addrow', null, datarow);
+        var commit = $("#ekamut").jqxGrid('addrow', null, datarow);
 
+        generatecharts();
+        overalls();
+
+    });
+
+    // delete row.
+    $("#deleterowbutton").on('click', function () {
+        var selectedrowindex = $("#jqxgrid").jqxGrid('getselectedrowindex');
+        var rowscount = $("#jqxgrid").jqxGrid('getdatainformation').rowscount;
+        if (selectedrowindex >= 0 && selectedrowindex < rowscount) {
+            var id = $("#jqxgrid").jqxGrid('getrowid', selectedrowindex);
+            var commit = $("#jqxgrid").jqxGrid('deleterow', id);
+        }
+
+        generatecharts();
+        overalls();
+
+    });
+
+    var overalls = function (){
+        // overalls
+        $('#CPC-1').text(overallCPC);
+        $('#CPM-1').text(overallCPM);
+        $('#clicks-1').text($("#jqxgrid").jqxGrid('getcolumnaggregateddata', 'clicks', ['sum'], true).sum);
+        $('#overallBudget').text($("#jqxgrid").jqxGrid('getcolumnaggregateddata', 'total', ['sum'], true).sum);
+        $('#overallBudgetVat').text($("#jqxgrid").jqxGrid('getcolumnaggregateddata', 'total_vat', ['sum'], true).sum);
+        $('#overallBudgetAgency').text($("#jqxgrid").jqxGrid('getcolumnaggregateddata', 'total', ['sum'], true).sum);
+        $('#viewForecast-1').text($("#jqxgrid").jqxGrid('getcolumnaggregateddata', 'view', ['sum'], true).sum);
+    }
+
+    var generatecharts = function (){
         /* create clicks forecast chart */
         var rows = $('#jqxgrid').jqxGrid('getrows', 'clicks');
         var result = {};
@@ -515,7 +685,7 @@ console.log(selectedrowindex);
                     series: [
                         { dataField: 'value', displayText: 'CPM'}
                     ]
-                },
+                }
             ]
         };
         // setup the chart
@@ -606,27 +776,23 @@ console.log(selectedrowindex);
         $('#cpcChart').jqxChart(settings);
 
 
-        // overalls
-        $('#CPC-1').text(overallCPC);
-        $('#CPM-1').text(overallCPM);
-        $('#clicks-1').text($("#jqxgrid").jqxGrid('getcolumnaggregateddata', 'clicks', ['sum'], true).sum);
-        $('#overallBudget').text($("#jqxgrid").jqxGrid('getcolumnaggregateddata', 'total', ['sum'], true).sum);
-        $('#overallBudgetVat').text($("#jqxgrid").jqxGrid('getcolumnaggregateddata', 'total_vat', ['sum'], true).sum);
-        $('#overallBudgetAgency').text($("#jqxgrid").jqxGrid('getcolumnaggregateddata', 'total', ['sum'], true).sum);
-        $('#viewForecast-1').text($("#jqxgrid").jqxGrid('getcolumnaggregateddata', 'view', ['sum'], true).sum);
-    });
+    }
 
-    // delete row.
-    $("#deleterowbutton").on('click', function () {
-        var selectedrowindex = $("#jqxgrid").jqxGrid('getselectedrowindex');
-        var rowscount = $("#jqxgrid").jqxGrid('getdatainformation').rowscount;
-        if (selectedrowindex >= 0 && selectedrowindex < rowscount) {
-            var id = $("#jqxgrid").jqxGrid('getrowid', selectedrowindex);
-            var commit = $("#jqxgrid").jqxGrid('deleterow', id);
-        }
-    });
+
+
 });
 </script>
+
+<div id="GlobalVar" style="float: right; width: ">
+    <p><strong>Global variables:    </strong></p>
+    <p >Start Date :  <span style='margin-left: 30px;display: inline-block;vertical-align: middle;' id='StartDate'></span></p>
+    <p>Clients :  <span style='margin-left: 30px;display: inline-block;vertical-align: middle;' id='ClientList'></span></p>
+    <p>Agency : <span style='margin-left: 30px;display: inline-block;vertical-align: middle;' id="AgencyList"></span></p>
+    <p>VAT: <span style='margin-left: 30px;display: inline-block;vertical-align: middle;' id='VATjqxRadioButton1'>Calculate with VAT</span>
+    <span style='display: inline-block;vertical-align: middle;' id='VATjqxRadioButton2'>Calculate without VAT</span></p>
+    <p>Currency:    <span style='display: inline-block;vertical-align: middle;' id="currency"></span></p>
+</div>
+
 <div id="overallPrint">
     <p><strong>Campaign overall statistics:</strong></p>
     <p>Campaign overall budjet (without VAT):	<span id="overallBudget"></span></p>
@@ -670,6 +836,14 @@ console.log(selectedrowindex);
     </div>
 </div>
 <br/>
+
+<div style="overflow-y: scroll;">
+    <div style="float: left;" id="ekamut">
+    </div>
+</div>
+
+<br/>
+
 <div style="overflow-y: scroll;">
     <div style="float: left;" id="products">
     </div>
@@ -691,6 +865,16 @@ console.log(selectedrowindex);
         <input type="button" value="Export Clicks Chart" id='pngButton' />
     </div>
 </div>
+
+
+<!--  ekamut-->
+<div style="overflow-y: scroll;">
+    <div style="float: left;" id="ekamut">
+    </div>
+</div>
+
+
+
 <div id="charts">
     <div id='clicksChart' style="float:left;width: 420px; height: 400px; position: relative; left: 0px;top: 0px;">
     </div>

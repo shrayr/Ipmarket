@@ -52,7 +52,8 @@ $cs->registerScriptFile($baseUrl . '/js/scripts/demos.js');
                 { name: 'placement_type' },
                 { name: 'type' },
                 { name: 'price_type' },
-                { name: 'photo' }
+                { name: 'photo' },
+                { name: 'pageview' }
             ],
             hierarchy:
             {
@@ -88,7 +89,9 @@ $cs->registerScriptFile($baseUrl . '/js/scripts/demos.js');
                     { text: 'Site name', dataField: 'site_name', width: 150 },
                     { text: 'Banner name', dataField: 'name', width: 120 },
                     { text: 'Type', dataField: 'type', width: 160 },
-                    { text: 'Photo', dataField: 'photo', cellsFormat: 'd', width: 120 },
+                    { text: 'Photo', editable:false, dataField: 'photo', cellsRenderer: function (row, column, value) {
+                        return "<a href='../images/banners/"+value+"' target='_blank'>Logo</a>";
+                    } },
                     { text: 'Duration', dataField: 'duration', cellsFormat: 'd', width: 120 }
                 ]
             });

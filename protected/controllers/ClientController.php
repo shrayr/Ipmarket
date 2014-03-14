@@ -32,7 +32,7 @@ class ClientController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','GetClients'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -165,6 +165,16 @@ class ClientController extends Controller
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
 	}
+
+    public function actionGetClients()
+    {
+        header('Content-Type: application/json; charset="UTF-8"');
+        $model= new Client();
+
+        echo CJSON::encode($model->findAll());
+    }
+
+
 
 	/**
 	 * Performs the AJAX validation.

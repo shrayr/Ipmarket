@@ -78,7 +78,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'duration'); ?>
-		<?php echo $form->dropDownList($model,'duration',array('month'=>'By month','view'=>'By View')); ?>
+		<?php echo $form->dropDownList($model,'duration',array('month'=>'By month','view'=>'By View', 'click' =>'By click')); ?>
 		<?php echo $form->error($model,'duration'); ?>
 	</div>
 

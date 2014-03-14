@@ -48,7 +48,7 @@ class Banner extends CActiveRecord
 			array('size, duration, placement, placement_type, type, price_type', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, site_name, name, size, photo, price_amd, price_us, price_rur, duration, placement, placement_type, type, price_type, ctr, cost_price', 'safe', 'on'=>'search'),
+			array('id, site_name, name, size, photo, price_amd, price_us, price_rur, duration, placement, pageview, placement_type, type, price_type, ctr, cost_price', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -75,15 +75,15 @@ class Banner extends CActiveRecord
 			'name' => 'Name',
 			'size' => 'Size',
 			'photo' => 'Photo',
-			'price_amd' => 'Price Amd',
-			'price_us' => 'Price Us',
-			'price_rur' => 'Price Rur',
-			'duration' => 'Duration',
+			'price_amd' => 'Price AMD',
+			'price_us' => 'Price USD',
+			'price_rur' => 'Price RUR',
+			'duration' => 'Price for:',
 			'placement' => 'Placement',
 			'placement_type' => 'Placement Type',
 			'type' => 'Type',
 			'price_type' => 'Price Type',
-			'ctr' => 'Ctr',
+			'ctr' => 'CTR',
 			'cost_price' => 'Cost Price',
             'pageview' => 'Page view'
 		);
@@ -123,7 +123,6 @@ class Banner extends CActiveRecord
 		$criteria->compare('ctr',$this->ctr);
 		$criteria->compare('cost_price',$this->cost_price);
 		$criteria->compare('pageview',$this->pageview);
-
 
 
 		return new CActiveDataProvider($this, array(
